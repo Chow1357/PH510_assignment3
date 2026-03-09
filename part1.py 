@@ -21,6 +21,10 @@ omega = 2.0 / (1.0 + np.sin(np.pi / N))
 
 # potential array with halo shape 
 phi = np.zeros([N + 2, N + 2], dtype=float)
-# source term 
+
+# source term for poisson 
+f = np.zeros([N + 2, N + 2], dtype=float)
+
+# example: positive and negative and negative source
 
 
