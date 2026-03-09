@@ -66,7 +66,7 @@ def poisson_sor(phi, f):
 
             change = abs(phi[i, j] - old_value)
             if change > max_change:
-                max_chnage = change
+                max_change = change
     return max_change
 
 #starting the loop which repeats the SOR sweep until convergence is acheived
