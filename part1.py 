@@ -13,4 +13,14 @@ V_bottom = 0.0
 V_left = 0.0
 V_right = 0.0
 
+# grid spacing 
+h = 1.0 / (N - 1) 
+
+# SOR parameter for square grid 
+omega = 2.0 / (1.0 + np.sin(np.pi / N))
+
+# potential array with halo shape 
+phi = np.zeros([N + 2, N + 2], dtype=float)
+# source term 
+
 
