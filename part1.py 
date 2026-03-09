@@ -74,6 +74,9 @@ def poisson_sor(phi, f):
 delta = 1.0 
 iterations = 0 
 
+while delta > target: 
+    delta = poisson_sor(phi, f)
+    iterations += 1
 
 
 
