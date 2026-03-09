@@ -1,0 +1,7 @@
+ERROR: Unable to locate a modulefile for 'python'
+Traceback (most recent call last):
+  File "/users/kwb21127/repos/PH510_assignment3/part1.py", line 78, in <module>
+    delta = poisson_sor(phi, f)
+  File "/users/kwb21127/repos/PH510_assignment3/part1.py", line 68, in poisson_sor
+    if change > max_change:
+NameError: name 'max_change' is not defined

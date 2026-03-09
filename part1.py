@@ -49,7 +49,7 @@ phi[N+1, N+1] = phi[N, N]
 
 # defining the poisson over relaxation method
 def poisson_sor(phi, f):
-    max_chnage = 0.0
+    max_change = 0.0
     
     for i in range(2, N):
         for j in range(2, N):
