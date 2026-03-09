@@ -78,6 +78,12 @@ while delta > target:
     delta = poisson_sor(phi, f)
     iterations += 1
 
+#print functions for important parameters 
+print("Iterations =", iterations) 
+print("Omega =", omega) 
+print("Final max change =", delta) 
+
+
 
 
 
