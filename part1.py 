@@ -42,6 +42,39 @@ phi[1:N+1, 0] = phi[1:N+1, 1]
 phi[1:N+1, N+1] = phi[1:N+1, N]
 
 # corners of the halo
+phi[0, 0] = phi[1, 1]
+phi[0, N+1] = phi[1, N]
+phi[N+1, 0] = phi[N, 1]
+phi[N+1, N+1] = phi[N, N]
+
+# defining the poisson over relaxation method
+def poisson_sor(phi, f):
+    max_chnage = 0.0
+    
+    for i in range(2, N):
+        for j in range(2, N):
+            old_value = phi[i, j]
+
+            # Poisson update from the neighbours and the source term f 
+            phi_star = 0.25 * (
+                phi[i + 1, j] + phi[i - 1, j] +
+                phi[i, j + 1] + phi[i, j - 1] -
+                h * h * f[i, j]
+            )
+            # SOR update 
+            phi[i, j] = (1.0 - omega) * old_value + omega * phi_star
+
+            change = abs(phi[i, j] - old_value)
+            if change > max_change:
+                max_chnage = change
+    return max_change
+
+#starting the loop which repeats the SOR sweep until convergence is acheived
+#i.e tolerance is exceeded
+delta = 1.0 
+iterations = 0 
+
+
 
 
 
