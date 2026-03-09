@@ -1,1 +1,16 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
+import numpy as np 
+
+# defining the grid on which we can solve poisson's equation
+N = 10
+
+# target value for change in solution
+target = 1e-5
+
+# defining the boundary conditions and introducing a potential difference
+V_top = 1.0 
+V_bottom = 0.0
+V_left = 0.0
+V_right = 0.0
+
+
