@@ -78,6 +78,6 @@ nwalkers = 10000
 start_i = 25 
 start_j = 25 
 factor = 0.25 
-seed = 1234 
+seed = 1234
 
 
