@@ -92,6 +92,16 @@ print("Estimated Greens's function at the start point:", G[start_i, start_j])
 print(f"standard deviation at the start point: {G_std[start_i, start_j]:.6f}")
 print(f"Standard error at start point: {G_stderr[start_i, start_j]:.6f}")
 
+#--------------------------
+# TASK 3
+#--------------------------
+# testing various start points defined in length across the grid 
+# length of the grid in cm 
+L = 100 
 
+# defining the different points to test on the grid in length scale
+points = [(50, 50), (2, 2), (2, 50)] # in cm 
+
+for 
 
 
