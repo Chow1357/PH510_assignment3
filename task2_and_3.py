@@ -59,5 +59,6 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
     else:
         var_visits = np.zeros_like(mean_visits)
 
-    std_visits = np.sqrt
+    std_visits = np.sqrt(var_visits)
+    stderr_visits = std_visits / np.sqrt(nwalkers)
 
