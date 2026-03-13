@@ -34,3 +34,30 @@ def single_walk(start_i, start_j, N, rng):
         else:
             j -= 1
     return visits
+
+# monte carlo Green's function
+def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=None):
+    """
+    """
+    #numpy random generator 
+    rng = np.random.default_rng(seed)
+    # stores stats over many walkers (N+2 as gird includes halo)
+    sum_visits = np.zeros((N+2, N+2), dtype=float)
+    sumsq_visits = np.zeros((N+2, N+2), dtype=float)
+    # run many random walks (nwalkers defined later) 
+    for _ in rnage(nwalkers):
+        visits = single_walk(start_i, start_j, N, rng)
+        # accumulates stats for each lattice site used for mean and variance later
+        sum_visits += visits
+        sumsq_visits += visits**2
+    # computing the mean visits per walker for a point [i, j]
+    mean_visits = sum_visits / nwalkers
+    # computing the variance
+    if nwalkers >  1:
+        var_visits = (sumsq_visits - nwalkers * mean_visits**2) / (nwalkers - 1)
+        var_visits = np.maximum(var_visits, 0.0)
+    else:
+        var_visits = np.zeros_like(mean_visits)
+
+    std_visits = np.sqrt
+
