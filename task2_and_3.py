@@ -58,7 +58,26 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
         var_visits = np.maximum(var_visits, 0.0)
     else:
         var_visits = np.zeros_like(mean_visits)
-
+    # standard eviation and standard error calculations
     std_visits = np.sqrt(var_visits)
     stderr_visits = std_visits / np.sqrt(nwalkers)
+    # conversion of visits to Green's function with 0.25 factor
+    G = factor * mean_visits
+    G_std = factor * std_visits
+    G_stderr = factor * stderr_visits 
+
+    return G, G_std, G_stderr, mean_visits, std_visits
+
+# main section of the program where we implement the grid parameters
+#grid size N x N
+N = 50 
+# number of walkers 
+nwalkers = 10000
+
+# testing the program for a point at a round the centre of the grid
+start_i = 25 
+start_j = 25 
+factor = 0.25 
+seed = 1234 
+
 
