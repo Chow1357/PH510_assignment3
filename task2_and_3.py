@@ -80,4 +80,11 @@ start_j = 25
 factor = 0.25 
 seed = 1234
 
+#calling the function to return the stated values
+G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
+start_i, start_j, N, nwalkers, factor=factor, seed=seed
+)
+
+
+
 
