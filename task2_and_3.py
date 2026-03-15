@@ -116,13 +116,15 @@ if __name__ == "__main__":
     G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
     start_i, start_j, N, nwalkers, factor=factor, seed=seed
     )
+    # only root prints
+    if rank == 0:
 
-print(f"Grid size (interior): {N} x {N}")
-print(f"starting point: ({start_i}, {start_j})")
-print(f"Number of walkers: {nwalkers}")
-print("Estimated Greens's function at the start point:", G[start_i, start_j])
-print(f"standard deviation at the start point: {G_std[start_i, start_j]:.6f}")
-print(f"Standard error at start point: {G_stderr[start_i, start_j]:.6f}")
+        print(f"Grid size (interior): {N} x {N}")
+        print(f"starting point: ({start_i}, {start_j})")
+        print(f"Number of walkers: {nwalkers}")
+        print("Estimated Greens's function at the start point:", G[start_i, start_j])
+        print(f"standard deviation at the start point: {G_std[start_i, start_j]:.6f}")
+        print(f"Standard error at start point: {G_stderr[start_i, start_j]:.6f}")
 
 #--------------------------
 # TASK 3
