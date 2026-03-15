@@ -102,19 +102,20 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
 if __name__ == "__main__":
 
     N = 50 
-    # number of walkers 
+
+    # number of walkers across all MPI ranks
     nwalkers = 10000
 
-# testing the program for a point at a round the centre of the grid
-start_i = 25 
-start_j = 25 
-factor = 0.25 
-seed = 1234
+    # test point near the centre 
+    start_i = 25 
+    start_j = 25 
+    factor = 0.25 
+    seed = 1234
 
-#calling the function to return the stated values
-G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
-start_i, start_j, N, nwalkers, factor=factor, seed=seed
-)
+    #calling the function to return the stated values
+    G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
+    start_i, start_j, N, nwalkers, factor=factor, seed=seed
+    )
 
 print(f"Grid size (interior): {N} x {N}")
 print(f"starting point: ({start_i}, {start_j})")
