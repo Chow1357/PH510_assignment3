@@ -16,13 +16,20 @@
 #SBATCH --time=24:00:00
 
 # Job name
-#SBATCH --job-name=integral 
+#SBATCH --job-name=green's function 
 
 # Output file
 #SBATCH --output=slurm-%j.out
 
 # choose which version to load 
+module load mpi
 
 # Modify the line below to run your program  python3 Task1-code.py
-python part1.py 
+for i in 1 2 4 8 16
+do
+    echo "===== Running with $i MPI ranks ====="
+    
+    perf stat -e cycles,instructions,cache-misses mpirun -np $i ./task2_and_3.py
 
+    echo
+done 

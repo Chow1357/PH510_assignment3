@@ -59,14 +59,14 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
     else:
         local_nwalkers = base 
 
-    for _ in rnage(nwalkers):
+    for _ in range(local_nwalkers):
         visits = single_walk(start_i, start_j, N, rng)
         # accumulates stats for each lattice site used for mean and variance later
         local_sum_visits += visits
         local_sumsq_visits += visits**2
 
     # arrays to hold combined sums from all processors
-    gloabal_sum_visits = np.zeros((N+2, N+2), dtype=float)
+    global_sum_visits = np.zeros((N+2, N+2), dtype=float)
     global_sumsq_visits = np.zeros((N+2, N+2), dtype=float)
  
     # combining the sums from all the processors using MPI 
@@ -146,9 +146,9 @@ if __name__ == "__main__":
         i = int(round(x_cm / h))
         j = int(round(y_cm / h))
 
-        i = int(round(x_cm / h))
-        j = int(round(y_cm / h))
-
+        # clamping values so they stay within the grid
+        i = max(1, min(N, i))
+        j = max(1, min(N, j))
         return i, j
 
     for x_cm, y_cm in points: 
