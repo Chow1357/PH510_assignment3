@@ -126,31 +126,30 @@ if __name__ == "__main__":
         print(f"standard deviation at the start point: {G_std[start_i, start_j]:.6f}")
         print(f"Standard error at start point: {G_stderr[start_i, start_j]:.6f}")
 
-#--------------------------
-# TASK 3
-#--------------------------
-# testing various start points defined in length across the grid 
-# length of the grid in cm 
-L = 100 
+    #--------------------------
+    # TASK 3
+    #--------------------------
 
-# defining the different points to test on the grid in length scale
-points = [(50, 50), (2, 2), (2, 50)] # in cm 
+    L = 100 
 
-# function that converts a physical position in cm 
-# to a corresponding position on the grid
-def physical_to_grid(x_cm, y_cm, L_cm, N):
-    """
-    """
+    # defining the different points to test on the grid in length scale
+    points = [(50, 50), (2, 2), (2, 50)] # in cm 
 
-    h = L_cm / (N+1)
+    # function that converts a physical position in cm 
+    # to a corresponding position on the grid
+    def physical_to_grid(x_cm, y_cm, L_cm, N):
+        """
+        """
+
+        h = L_cm / (N+1)
     
-    i = int(round(x_cm / h))
-    j = int(round(y_cm / h))
+        i = int(round(x_cm / h))
+        j = int(round(y_cm / h))
 
-    i = int(round(x_cm / h))
-    j = int(round(y_cm / h))
+        i = int(round(x_cm / h))
+        j = int(round(y_cm / h))
 
-    return i, j
+        return i, j
 
 for x_cm, y_cm in points: 
  
