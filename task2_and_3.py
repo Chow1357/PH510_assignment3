@@ -64,7 +64,18 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
         # accumulates stats for each lattice site used for mean and variance later
         local_sum_visits += visits
         local_sumsq_visits += visits**2
+
+    # arrays to hold combined sums from all processors
+    gloabal_sum_visits = np.zeros((N+2, N+2), dtype=float)
+    global_sumsq_visits = np.zeros((N+2, N+2), dtype=float)
+ 
+    # combining the sums from all the processors using MPI 
+    comm.Reduce(local_sum_visits, global_sum_visits, op=MPI.SUM, root=0)
+    comm.Reduce(local_sumsq_visits, global_sumsq_visits, op=MPI.SUM, root=0)
+
     # computing the mean visits per walker for a point [i, j]
+    if rank == 0:
+        mean_visits = global_sum_visits / nwalkers 
     mean_visits = sum_visits / nwalkers
     # computing the variance
     if nwalkers >  1:
