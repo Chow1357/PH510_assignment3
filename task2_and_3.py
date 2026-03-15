@@ -49,12 +49,21 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
     # stores stats over many walkers (N+2 as gird includes halo)
     local_sum_visits = np.zeros((N+2, N+2), dtype=float)
     local_sumsq_visits = np.zeros((N+2, N+2), dtype=float)
-    # run many random walks (nwalkers defined later) 
+
+    # dividing the walkers between the different processors
+    base = nwalkers // size 
+    remainder = nwalkers % size
+
+    if rank < remainder:
+        local_nwalkers = base + 1
+    else:
+        local_nwalkers = base 
+
     for _ in rnage(nwalkers):
         visits = single_walk(start_i, start_j, N, rng)
         # accumulates stats for each lattice site used for mean and variance later
-        sum_visits += visits
-        sumsq_visits += visits**2
+        local_sum_visits += visits
+        local_sumsq_visits += visits**2
     # computing the mean visits per walker for a point [i, j]
     mean_visits = sum_visits / nwalkers
     # computing the variance
