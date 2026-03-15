@@ -16,7 +16,7 @@
 #SBATCH --time=24:00:00
 
 # Job name
-#SBATCH --job-name=green's function 
+#SBATCH --job-name=greens_function 
 
 # Output file
 #SBATCH --output=slurm-%j.out

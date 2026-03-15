@@ -1,0 +1,196 @@
+Loading mpi version 2021.6.0
+===== Running with 1 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 10000
+Estimated Greens's function at the start point: 0.779225
+standard deviation at the start point: 0.638371
+Standard error at start point: 0.006384
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.781375
+Standard deviation: 0.6444966229273016
+Standard error: 0.006444966229273016
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.303675
+Standard deviation: 0.12674522006798133
+Standard error: 0.0012674522006798133
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.363075
+Standard deviation: 0.20316107357754767
+Standard error: 0.0020316107357754767
+
+ Performance counter stats for 'mpirun -np 1 ./task2_and_3.py':
+
+      137656107469      cycles:u                                                              
+      328903240379      instructions:u                   #    2.39  insn per cycle            
+           4139862      cache-misses:u                                                        
+
+      41.819118268 seconds time elapsed
+
+      41.447088000 seconds user
+       0.241497000 seconds sys
+
+
+
+===== Running with 2 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 10000
+Estimated Greens's function at the start point: 0.782025
+standard deviation at the start point: 0.646479
+Standard error at start point: 0.006465
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.7912
+Standard deviation: 0.6578627047749654
+Standard error: 0.006578627047749654
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.299875
+Standard deviation: 0.12163557825073072
+Standard error: 0.0012163557825073071
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.36265
+Standard deviation: 0.20152925074016037
+Standard error: 0.0020152925074016035
+
+ Performance counter stats for 'mpirun -np 2 ./task2_and_3.py':
+
+      143590413110      cycles:u                                                              
+      337663207607      instructions:u                   #    2.35  insn per cycle            
+           8510667      cache-misses:u                                                        
+
+      22.426760762 seconds time elapsed
+
+      44.169056000 seconds user
+       0.423793000 seconds sys
+
+
+
+===== Running with 4 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 10000
+Estimated Greens's function at the start point: 0.7895
+standard deviation at the start point: 0.648523
+Standard error at start point: 0.006485
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.79415
+Standard deviation: 0.65907641110236
+Standard error: 0.006590764111023601
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.30215
+Standard deviation: 0.12477753981965009
+Standard error: 0.001247775398196501
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.364
+Standard deviation: 0.20268968476671692
+Standard error: 0.0020268968476671693
+
+ Performance counter stats for 'mpirun -np 4 ./task2_and_3.py':
+
+      155394324575      cycles:u                                                              
+      358779526596      instructions:u                   #    2.31  insn per cycle            
+          19827212      cache-misses:u                                                        
+
+      12.628503765 seconds time elapsed
+
+      49.262914000 seconds user
+       0.751303000 seconds sys
+
+
+
+===== Running with 8 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 10000
+Estimated Greens's function at the start point: 0.783675
+standard deviation at the start point: 0.646878
+Standard error at start point: 0.006469
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.78895
+Standard deviation: 0.6561447630630068
+Standard error: 0.006561447630630069
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.300975
+Standard deviation: 0.12261444778361369
+Standard error: 0.001226144477836137
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.3632
+Standard deviation: 0.20313760481173554
+Standard error: 0.0020313760481173553
+
+ Performance counter stats for 'mpirun -np 8 ./task2_and_3.py':
+
+      162445026859      cycles:u                                                              
+      369036303487      instructions:u                   #    2.27  insn per cycle            
+          49777482      cache-misses:u                                                        
+
+      49.348285629 seconds time elapsed
+
+      56.663735000 seconds user
+       1.462193000 seconds sys
+
+
+
+===== Running with 16 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 10000
+Estimated Greens's function at the start point: 0.79355
+standard deviation at the start point: 0.650823
+Standard error at start point: 0.006508
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.788625
+Standard deviation: 0.6539263118556506
+Standard error: 0.006539263118556507
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.30105
+Standard deviation: 0.12214904641033392
+Standard error: 0.001221490464103339
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.3609
+Standard deviation: 0.1979396574989486
+Standard error: 0.001979396574989486
+
+ Performance counter stats for 'mpirun -np 16 ./task2_and_3.py':
+
+      177998421066      cycles:u                                                              
+      395255451614      instructions:u                   #    2.22  insn per cycle            
+         118873643      cache-misses:u                                                        
+
+       4.869012203 seconds time elapsed
+
+      71.346639000 seconds user
+       3.322322000 seconds sys
+
+
+
