@@ -75,29 +75,35 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
 
     # computing the mean visits per walker for a point [i, j]
     if rank == 0:
-        mean_visits = global_sum_visits / nwalkers 
-    mean_visits = sum_visits / nwalkers
-    # computing the variance
-    if nwalkers >  1:
-        var_visits = (sumsq_visits - nwalkers * mean_visits**2) / (nwalkers - 1)
-        var_visits = np.maximum(var_visits, 0.0)
-    else:
-        var_visits = np.zeros_like(mean_visits)
-    # standard eviation and standard error calculations
-    std_visits = np.sqrt(var_visits)
-    stderr_visits = std_visits / np.sqrt(nwalkers)
-    # conversion of visits to Green's function with 0.25 factor
-    G = factor * mean_visits
-    G_std = factor * std_visits
-    G_stderr = factor * stderr_visits 
 
-    return G, G_std, G_stderr, mean_visits, std_visits
+        mean_visits = global_sum_visits / nwalkers
+ 
+        # computing the variance
+        if nwalkers >  1:
+            var_visits = (global_sumsq_visits - nwalkers * mean_visits**2) / (nwalkers - 1)
+            var_visits = np.maximum(var_visits, 0.0)
+        else:
+            var_visits = np.zeros_like(mean_visits)
+        # standard eviation and standard error calculations
+        std_visits = np.sqrt(var_visits)
+        stderr_visits = std_visits / np.sqrt(nwalkers)
+        # conversion of visits to Green's function with 0.25 factor
+        G = factor * mean_visits
+        G_std = factor * std_visits
+        G_stderr = factor * stderr_visits 
+
+        return G, G_std, G_stderr, mean_visits, std_visits
+
+    return None, None, None, None, None
 
 # main section of the program where we implement the grid parameters
 #grid size N x N
-N = 50 
-# number of walkers 
-nwalkers = 10000
+
+if __name__ == "__main__":
+
+    N = 50 
+    # number of walkers 
+    nwalkers = 10000
 
 # testing the program for a point at a round the centre of the grid
 start_i = 25 
