@@ -102,6 +102,22 @@ L = 100
 # defining the different points to test on the grid in length scale
 points = [(50, 50), (2, 2), (2, 50)] # in cm 
 
-for 
+# function that converts a physical position in cm 
+# to a corresponding position on the grid
+def physical_to_grid(x_cm, y_cm, L_cm, N):
+    """
+    """
+
+    h = L_cm / (N+1)
+    
+    i = int(round(x_cm / h))
+    j = int(round(y_cm / h))
+
+    i = int(round(x_cm / h))
+    j = int(round(y_cm / h))
+
+    return i, j
+
+
 
 
