@@ -118,6 +118,21 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
 
     return i, j
 
+for x_cm, y_cm in points: 
+ 
+    start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
+ 
+    G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=1234)
+
+    print()
+    print(f"Physical point: ({x_cm} cm, {y_cm} cm)")
+    print(f"Grid index: ({start_i}, {start_j})")
+
+    print("Green's function:", G[start_i, start_j])
+    print("Standard deviation:", G_std[start_i, start_j])
+    print("Standard error:", G_stderr[start_i, start_j])
+    
+
 
 
 
