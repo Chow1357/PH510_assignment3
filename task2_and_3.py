@@ -45,10 +45,10 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
     """
     """
     #numpy random generator 
-    rng = np.random.default_rng(seed)
+    rng = np.random.default_rng(seed + rank)
     # stores stats over many walkers (N+2 as gird includes halo)
-    sum_visits = np.zeros((N+2, N+2), dtype=float)
-    sumsq_visits = np.zeros((N+2, N+2), dtype=float)
+    local_sum_visits = np.zeros((N+2, N+2), dtype=float)
+    local_sumsq_visits = np.zeros((N+2, N+2), dtype=float)
     # run many random walks (nwalkers defined later) 
     for _ in rnage(nwalkers):
         visits = single_walk(start_i, start_j, N, rng)
