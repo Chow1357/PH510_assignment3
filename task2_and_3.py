@@ -1,6 +1,11 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 import numpy as np
 import matplotlib.pyplot as plt
+from mpi4py import MPI
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
 
 #------------------------------
 # Boundary test
@@ -29,7 +34,7 @@ def single_walk(start_i, start_j, N, rng):
             i += 1
         elif step == 1:
             i -= 1
-        elif step == 2
+        elif step == 2:
             j += 1
         else:
             j -= 1
@@ -131,6 +136,7 @@ for x_cm, y_cm in points:
     print("Green's function:", G[start_i, start_j])
     print("Standard deviation:", G_std[start_i, start_j])
     print("Standard error:", G_stderr[start_i, start_j])
+    
     
 
 
