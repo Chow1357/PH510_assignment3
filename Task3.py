@@ -10,40 +10,24 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 size = comm.Get_size()
 
-#
-def is_boundary(i, j, N):
-    """
-    function determines when the walker has
-    reached the absorbing boundary
-    """
-    return i == 0 or i == N+1 or j == 0 or j == N+1
-# One random walk test
-def single_walk(start_i, start_j, N, rng):
-    """
-    performs a random walk from a start point on the grid (start_i, start_j)
-    and creates an array and records how many times this walker visits each point.
-    """
-    visits = np.zeros((N+2, N+2), dtype=int)
-
-    i, j = start_i, start_j
-
-    while not is_boundary(i, j, N):
-        visits[i, j] += 1
-        # this matches 
-        step = rng.integers(4) # random number generator with equal probability (directions) 
-        if step == 0:
-            i += 1
-        elif step == 1:
-            i -= 1
-        elif step == 2:
-            j += 1
-        else:
-            j -= 1
-    return visits
-
 #--------------------------
 # TASK 3
 #--------------------------
+# to a corresponding position on the grid
+def physical_to_grid(x_cm, y_cm, L_cm, N):
+    """
+    """
+
+    h = L_cm / (N+1)
+    
+    i = int(round(x_cm / h))
+    j = int(round(y_cm / h))
+
+    # clamping values so they stay within the grid
+    i = max(1, min(N, i))
+    j = max(1, min(N, j))
+    return i, j
+
 if __name__ == "__main__":
     N = 50 
     nwalkers = 100000
@@ -51,22 +35,6 @@ if __name__ == "__main__":
 
     # defining the different points to test on the grid in length scale
     points = [(50, 50), (2, 2), (2, 50)] # in cm 
-
-    # function that converts a physical position in cm 
-    # to a corresponding position on the grid
-    def physical_to_grid(x_cm, y_cm, L_cm, N):
-        """
-        """
-
-        h = L_cm / (N+1)
-    
-        i = int(round(x_cm / h))
-        j = int(round(y_cm / h))
-
-        # clamping values so they stay within the grid
-        i = max(1, min(N, i))
-        j = max(1, min(N, j))
-        return i, j
 
     for x_cm, y_cm in points: 
  
