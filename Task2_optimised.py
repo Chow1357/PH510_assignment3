@@ -64,3 +64,19 @@ def estimate_greens_function(start_i. start_j, N, nwalkers, factor=0.25, seed=No
             visits = single_walk(start_i, start_j, N, rng)
             local_sum_visits += visits
             local_sumsq_visits += visits**2
+
+    if rank == 0:
+        next_walker = 0
+        active _walkers = 0
+
+        #send initial chunks to workers
+        for worker in range (1, size):
+            if next_walker < nwalkers:
+                nchunk = min(chnk_size, nwalkers - next_walker)
+                comm.send(nchunk, dest=worker, tag=1)
+                next_walker += nchunk
+                active_workers += 1
+            else:
+                # no work left 
+                com.send(0, dest=worker, tag=1)
+
