@@ -88,3 +88,18 @@ def estimate_greens_function(start_i. start_j, N, nwalkers, factor=0.25, seed=No
                 nchunk = min(chunk_size, nwalkers - next_walker)
                 comm.send(nchunk, dest=finished_worker, tag=1)
                 next_walker += nchunk 
+            else:
+                # worker ranks repeatedly receive chunks
+                while True:
+                    nchunk = comm.recv(source=0, tag=1)
+
+                    if nchunk == 0:
+                        break
+
+                    for _ in range(nchunk):
+                        visits = single_walk(start_i, start_j, N, rng)
+                        local_sum_visits += visits
+                        local_sumsq_visits += visits**2
+
+                    # tell rank 0 this chunk is complete
+                    comm.send(rank, dest=0, tag=2)
