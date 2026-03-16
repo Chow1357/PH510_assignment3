@@ -43,7 +43,7 @@ def single_walk(start_i, start_j, N, rng):
     return visits
 
 # monte carlo Greens's function with dynamic load balancing 
-def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=None, chunk_size=1000):
+def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=None, chunk_size=2500):
     """
     Estimate the Green's function using MPI with dynamic chunk scheduling
     """
@@ -148,7 +148,7 @@ if __name__ == "__main__":
     N = 50 
 
     # number of walkers across all MPI ranks
-    nwalkers = 1000000
+    nwalkers = 200000
 
     # test point near the centre 
     start_i = 25 
@@ -158,7 +158,7 @@ if __name__ == "__main__":
 
     #calling the function to return the stated values
     G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
-    start_i, start_j, N, nwalkers, factor=factor, seed=seed, chunk_size=1000
+    start_i, start_j, N, nwalkers, factor=factor, seed=seed, chunk_size=2500
     )
     # only root prints
     if rank == 0:
