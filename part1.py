@@ -2,10 +2,10 @@
 import numpy as np 
 
 # defining the grid on which we can solve poisson's equation
-N = 10
+N = 50
 
 # target value for change in solution
-target = 1e-5
+target = 1e-8
 
 # defining the boundary conditions and introducing a potential difference
 V_top = 100.0 
