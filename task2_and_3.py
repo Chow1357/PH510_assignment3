@@ -109,7 +109,7 @@ if __name__ == "__main__":
     N = 50 
 
     # number of walkers across all MPI ranks
-    nwalkers = 10000
+    nwalkers = 1000000
 
     # test point near the centre 
     start_i = 25 
