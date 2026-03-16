@@ -30,7 +30,7 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
 
 if __name__ == "__main__":
     N = 50 
-    nwalkers = 100000
+    nwalkers = 1000000
     L = 100 
 
     # defining the different points to test on the grid in length scale
