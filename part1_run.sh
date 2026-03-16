@@ -24,5 +24,6 @@
 # choose which version to load 
 
 # Modify the line below to run your program  python3 Task1-code.py
-python part1.py 
+
+perf stat -e cycles,instructions,cache-misses python3 part1.py
 
