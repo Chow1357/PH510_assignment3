@@ -65,44 +65,48 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
             local_sum_visits += visits
             local_sumsq_visits += visits**2
 
-    if rank == 0:
-        next_walker = 0
-        active_walkers = 0
+    else:
+        if rank == 0:
+            next_walker = 0
+            active_workers = 0
 
-        #send initial chunks to workers
-        for worker in range (1, size):
-            if next_walker < nwalkers:
-                nchunk = min(chnk_size, nwalkers - next_walker)
-                comm.send(nchunk, dest=worker, tag=1)
-                next_walker += nchunk
-                active_workers += 1
-            else:
-                # no work left 
-                com.send(0, dest=worker, tag=1)
+            #send initial chunks to workers
+            for worker in range (1, size):
+                if next_walker < nwalkers:
+                    nchunk = min(chunk_size, nwalkers - next_walker)
+                    comm.send(nchunk, dest=worker, tag=1)
+                    next_walker += nchunk
+                    active_workers += 1
+                else:
+                    # no work left 
+                    comm.send(0, dest=worker, tag=1)
 
-        # keep assigning chunks as workers finish
-        while active_workers > 0:
-            finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
+            # keep assigning chunks as workers finish
+            while active_workers > 0:
+                finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
 
-            if next_walker < nwalkers:
-                nchunk = min(chunk_size, nwalkers - next_walker)
-                comm.send(nchunk, dest=finished_worker, tag=1)
-                next_walker += nchunk 
-            else:
-                # worker ranks repeatedly receive chunks
-                while True:
-                    nchunk = comm.recv(source=0, tag=1)
+                if next_walker < nwalkers:
+                    nchunk = min(chunk_size, nwalkers - next_walker)
+                    comm.send(nchunk, dest=finished_worker, tag=1)
+                    next_walker += nchunk 
+                else:
+                    comm.send(0, dest=finished_worker, tag=1)
+                    active_workers -= 1
+        else:
+            # worker ranks repeatedly receive chunks
+            while True:
+                nchunk = comm.recv(source=0, tag=1)
 
-                    if nchunk == 0:
-                        break
+                if nchunk == 0:
+                    break
 
-                    for _ in range(nchunk):
-                        visits = single_walk(start_i, start_j, N, rng)
-                        local_sum_visits += visits
-                        local_sumsq_visits += visits**2
+                for _ in range(nchunk):
+                    visits = single_walk(start_i, start_j, N, rng)
+                    local_sum_visits += visits
+                    local_sumsq_visits += visits**2
 
-                    # tell rank 0 this chunk is complete
-                    comm.send(rank, dest=0, tag=2)
+                # tell rank 0 this chunk is complete
+                comm.send(rank, dest=0, tag=2)
 
     # global accumulators on rank 0 
     global_sum_visits = np.zeros((N + 2, N + 2), dtype=float)
@@ -114,18 +118,19 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
 
     # computing the mean visits per walker for a point [i, j]
     if rank == 0:
-
         mean_visits = global_sum_visits / nwalkers
  
         # computing the variance
-        if nwalkers >  1:
+        if nwalkers > 1:
             var_visits = (global_sumsq_visits - nwalkers * mean_visits**2) / (nwalkers - 1)
             var_visits = np.maximum(var_visits, 0.0)
         else:
             var_visits = np.zeros_like(mean_visits)
+
         # standard eviation and standard error calculations
         std_visits = np.sqrt(var_visits)
         stderr_visits = std_visits / np.sqrt(nwalkers)
+
         # conversion of visits to Green's function with 0.25 factor
         G = factor * mean_visits
         G_std = factor * std_visits
