@@ -103,3 +103,34 @@ def estimate_greens_function(start_i. start_j, N, nwalkers, factor=0.25, seed=No
 
                     # tell rank 0 this chunk is complete
                     comm.send(rank, dest=0, tag=2)
+
+    # global accumulators on rank 0 
+    global_sum_visits = np.zeros((N + 2, N + 2), dtype=float)
+    global_sumsq_visits = np.zeros((N + 2, N + 2), dtype=float)
+
+        # combining the sums from all the processors using MPI 
+    comm.Reduce(local_sum_visits, global_sum_visits, op=MPI.SUM, root=0)
+    comm.Reduce(local_sumsq_visits, global_sumsq_visits, op=MPI.SUM, root=0)
+
+    # computing the mean visits per walker for a point [i, j]
+    if rank == 0:
+
+        mean_visits = global_sum_visits / nwalkers
+ 
+        # computing the variance
+        if nwalkers >  1:
+            var_visits = (global_sumsq_visits - nwalkers * mean_visits**2) / (nwalkers - 1)
+            var_visits = np.maximum(var_visits, 0.0)
+        else:
+            var_visits = np.zeros_like(mean_visits)
+        # standard eviation and standard error calculations
+        std_visits = np.sqrt(var_visits)
+        stderr_visits = std_visits / np.sqrt(nwalkers)
+        # conversion of visits to Green's function with 0.25 factor
+        G = factor * mean_visits
+        G_std = factor * std_visits
+        G_stderr = factor * stderr_visits 
+
+        return G, G_std, G_stderr, mean_visits, std_visits
+
+    return None, None, None, None, None
