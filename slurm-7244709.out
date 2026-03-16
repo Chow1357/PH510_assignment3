@@ -1,0 +1,196 @@
+Loading mpi version 2021.6.0
+===== Running with 1 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 1000000
+Estimated Greens's function at the start point: 0.78455975
+standard deviation at the start point: 0.648083
+Standard error at start point: 0.000648
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.78527675
+Standard deviation: 0.6487914027942431
+Standard error: 0.0006487914027942431
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.30237075
+Standard deviation: 0.12580394616652674
+Standard error: 0.00012580394616652673
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.363218
+Standard deviation: 0.202602382818479
+Standard error: 0.000202602382818479
+
+ Performance counter stats for 'mpirun -np 1 ./task2_and_3.py':
+
+    14202942141936      cycles:u                                                              
+    33140632150441      instructions:u                   #    2.33  insn per cycle            
+          23658776      cache-misses:u                                                        
+
+    4160.882768314 seconds time elapsed
+
+    4151.165080000 seconds user
+       0.499063000 seconds sys
+
+
+
+===== Running with 2 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 1000000
+Estimated Greens's function at the start point: 0.784837
+standard deviation at the start point: 0.649094
+Standard error at start point: 0.000649
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.78593875
+Standard deviation: 0.6500625095555841
+Standard error: 0.0006500625095555841
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.30225075
+Standard deviation: 0.12573657953883158
+Standard error: 0.00012573657953883157
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.363551
+Standard deviation: 0.20300175272325016
+Standard error: 0.00020300175272325018
+
+ Performance counter stats for 'mpirun -np 2 ./task2_and_3.py':
+
+    14893568972454      cycles:u                                                              
+    34615861774776      instructions:u                   #    2.32  insn per cycle            
+          31101713      cache-misses:u                                                        
+
+    2270.688858432 seconds time elapsed
+
+    4514.377052000 seconds user
+      12.841084000 seconds sys
+
+
+
+===== Running with 4 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 1000000
+Estimated Greens's function at the start point: 0.78373075
+standard deviation at the start point: 0.646600
+Standard error at start point: 0.000647
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.7860135
+Standard deviation: 0.6519150272933987
+Standard error: 0.0006519150272933986
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.3023495
+Standard deviation: 0.12567784468501458
+Standard error: 0.00012567784468501457
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.36342125
+Standard deviation: 0.20293496182530066
+Standard error: 0.00020293496182530066
+
+ Performance counter stats for 'mpirun -np 4 ./task2_and_3.py':
+
+    14207650786467      cycles:u                                                              
+    33977072238097      instructions:u                   #    2.39  insn per cycle            
+          40073833      cache-misses:u                                                        
+
+    1141.823496752 seconds time elapsed
+
+    4542.756261000 seconds user
+       9.864124000 seconds sys
+
+
+
+===== Running with 8 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 1000000
+Estimated Greens's function at the start point: 0.78388025
+standard deviation at the start point: 0.647112
+Standard error at start point: 0.000647
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.7859885
+Standard deviation: 0.6509025476535459
+Standard error: 0.000650902547653546
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.30232375
+Standard deviation: 0.1256505211847168
+Standard error: 0.00012565052118471682
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.3632905
+Standard deviation: 0.20284767377746468
+Standard error: 0.00020284767377746468
+
+ Performance counter stats for 'mpirun -np 8 ./task2_and_3.py':
+
+    14415829004770      cycles:u                                                              
+    34213921416473      instructions:u                   #    2.37  insn per cycle            
+          68168464      cache-misses:u                                                        
+
+     640.657383425 seconds time elapsed
+
+    5097.198829000 seconds user
+      12.000681000 seconds sys
+
+
+
+===== Running with 16 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 1000000
+Estimated Greens's function at the start point: 0.78520075
+standard deviation at the start point: 0.647959
+Standard error at start point: 0.000648
+
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.785807
+Standard deviation: 0.6501910538444884
+Standard error: 0.0006501910538444884
+
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.30215025
+Standard deviation: 0.12526044712963905
+Standard error: 0.00012526044712963904
+
+Physical point: (2 cm, 50 cm)
+Grid index: (1, 26)
+Green's function: 0.36321
+Standard deviation: 0.20275117017673916
+Standard error: 0.00020275117017673917
+
+ Performance counter stats for 'mpirun -np 16 ./task2_and_3.py':
+
+    15396424218607      cycles:u                                                              
+    36122190830779      instructions:u                   #    2.35  insn per cycle            
+         144170137      cache-misses:u                                                        
+
+     401.471079248 seconds time elapsed
+
+    6357.749814000 seconds user
+      33.386385000 seconds sys
+
+
+
