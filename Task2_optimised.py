@@ -134,3 +134,33 @@ def estimate_greens_function(start_i. start_j, N, nwalkers, factor=0.25, seed=No
         return G, G_std, G_stderr, mean_visits, std_visits
 
     return None, None, None, None, None
+
+# main section of the program where we implement the grid parameters
+#grid size N x N
+
+if __name__ == "__main__":
+
+    N = 50 
+
+    # number of walkers across all MPI ranks
+    nwalkers = 1000000
+
+    # test point near the centre 
+    start_i = 25 
+    start_j = 25 
+    factor = 0.25 
+    seed = 1234
+
+    #calling the function to return the stated values
+    G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
+    start_i, start_j, N, nwalkers, factor=factor, seed=seed
+    )
+    # only root prints
+    if rank == 0:
+
+        print(f"Grid size (interior): {N} x {N}")
+        print(f"starting point: ({start_i}, {start_j})")
+        print(f"Number of walkers: {nwalkers}")
+        print("Estimated Greens's function at the start point:", G[start_i, start_j])
+        print(f"standard deviation at the start point: {G_std[start_i, start_j]:.6f}")
+        print(f"Standard error at start point: {G_stderr[start_i, start_j]:.6f}")
