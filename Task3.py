@@ -44,6 +44,7 @@ if __name__ == "__main__":
 
         if rank == 0:
             print()
+            print(f"Number of walkers: {nwalkers}")
             print(f"Physical point: ({x_cm} cm, {y_cm} cm)")
             print(f"Grid index: ({start_i}, {start_j})")
             print("Green's function:", G[start_i, start_j])
