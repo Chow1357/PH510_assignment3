@@ -30,7 +30,7 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
 
 if __name__ == "__main__":
     N = 50 
-    nwalkers = 1000000
+    nwalkers = 200000
     L = 100 
 
     # defining the different points to test on the grid in length scale
@@ -40,7 +40,7 @@ if __name__ == "__main__":
  
         start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
  
-        G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=1234)
+        G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=1234, chunk_size=2500)
 
         if rank == 0:
             print()
