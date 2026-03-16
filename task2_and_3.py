@@ -169,7 +169,17 @@ if __name__ == "__main__":
             print("Green's function:", G[start_i, start_j])
             print("Standard deviation:", G_std[start_i, start_j])
             print("Standard error:", G_stderr[start_i, start_j])
-    
+
+            plt.figure(figsize=(6, 5))
+            plt.imshow(G[1:N+1, 1:N+1], origin="lower", extent=[0, L, 0, L])
+            plt.colorbar(label="Green's function")
+            plt.scatter(x_cm, y_cm, marker="x")
+            plt.xlabel("x (cm)")
+            plt.ylabel("y (cm)")
+            plt.title(f"Green's function from start point ({x_cm} cm, {y_cm} cm)")
+            plt.tight_layout()
+            plt.savefig(f"greens_function_{x_cm}_{y_cm}.png", dpi=300)
+            plt.close()
     
 
 
