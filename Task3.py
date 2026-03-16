@@ -45,7 +45,8 @@ def single_walk(start_i, start_j, N, rng):
 # TASK 3
 #--------------------------
 if __name__ == "__main__":
-
+    N = 50 
+    nwalkers = 100000
     L = 100 
 
     # defining the different points to test on the grid in length scale
