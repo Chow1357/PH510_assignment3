@@ -8,8 +8,8 @@ N = 10
 target = 1e-5
 
 # defining the boundary conditions and introducing a potential difference
-V_top = 1.0 
-V_bottom = 0.0
+V_top = 100.0 
+V_bottom = 100.0
 V_left = 0.0
 V_right = 0.0
 
