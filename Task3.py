@@ -4,7 +4,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from mpi4py import MPI
-from Task2.py import estimate_greens_function
+from Task2_optimised import estimate_greens_function
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
