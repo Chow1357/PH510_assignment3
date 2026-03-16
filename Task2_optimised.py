@@ -143,7 +143,7 @@ if __name__ == "__main__":
     N = 50 
 
     # number of walkers across all MPI ranks
-    nwalkers = 1000000
+    nwalkers = 100000
 
     # test point near the centre 
     start_i = 25 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
 
     #calling the function to return the stated values
     G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
-    start_i, start_j, N, nwalkers, factor=factor, seed=seed
+    start_i, start_j, N, nwalkers, factor=factor, seed=seed, chunk_size=1000
     )
     # only root prints
     if rank == 0:
