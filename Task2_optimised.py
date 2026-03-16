@@ -80,3 +80,11 @@ def estimate_greens_function(start_i. start_j, N, nwalkers, factor=0.25, seed=No
                 # no work left 
                 com.send(0, dest=worker, tag=1)
 
+        # keep assigning chunks as workers finish
+        while active_workers > 0:
+            finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
+
+            if next_walker < nwalkers:
+                nchunk = min(chunk_size, nwalkers - next_walker)
+                comm.send(nchunk, dest=finished_worker, tag=1)
+                next_walker += nchunk 
