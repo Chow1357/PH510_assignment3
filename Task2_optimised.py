@@ -67,7 +67,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
 
     if rank == 0:
         next_walker = 0
-        active _walkers = 0
+        active_walkers = 0
 
         #send initial chunks to workers
         for worker in range (1, size):
