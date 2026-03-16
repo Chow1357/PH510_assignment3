@@ -4,6 +4,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from mpi4py import MPI
+from Task2.py import estimate_greens_function
 
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
@@ -43,7 +44,7 @@ def single_walk(start_i, start_j, N, rng):
 #--------------------------
 # TASK 3
 #--------------------------
-if __name__ = "__main__":
+if __name__ == "__main__":
 
     L = 100 
 
