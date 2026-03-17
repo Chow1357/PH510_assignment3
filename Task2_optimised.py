@@ -70,28 +70,59 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
             next_walker = 0
             active_workers = 0
 
-            #send initial chunks to workers
-            for worker in range (1, size):
+            # send initial chunks to workers
+            for worker in range(1, size):
                 if next_walker < nwalkers:
                     nchunk = min(chunk_size, nwalkers - next_walker)
                     comm.send(nchunk, dest=worker, tag=1)
                     next_walker += nchunk
                     active_workers += 1
                 else:
-                    # no work left 
                     comm.send(0, dest=worker, tag=1)
 
-            # keep assigning chunks as workers finish
-            while active_workers > 0:
-                finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
+            # rank 0 also works on chunks
+            while True:
 
+                # rank 0 takes a chunk for itself if any work remains
                 if next_walker < nwalkers:
-                    nchunk = min(chunk_size, nwalkers - next_walker)
-                    comm.send(nchunk, dest=finished_worker, tag=1)
-                    next_walker += nchunk 
+                    nchunk0 = min(chunk_size, nwalkers - next_walker)
+                    next_walker += nchunk0
+
+                    for _ in range(nchunk0):
+                        visits = single_walk(start_i, start_j, N, rng)
+                        local_sum_visits += visits
+                        local_sumsq_visits += visits**2
                 else:
-                    comm.send(0, dest=finished_worker, tag=1)
-                    active_workers -= 1
+                    nchunk0 = 0
+
+                # keep assigning chunks as workers finish (non-blocking check)
+                while active_workers > 0 and comm.Iprobe(source=MPI.ANY_SOURCE, tag=2):
+                    finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
+
+                    if next_walker < nwalkers:
+                        nchunk = min(chunk_size, nwalkers - next_walker)
+                        comm.send(nchunk, dest=finished_worker, tag=1)
+                        next_walker += nchunk
+                    else:
+                        comm.send(0, dest=finished_worker, tag=1)
+                        active_workers -= 1
+
+                # stop when no work remains anywhere
+                if next_walker >= nwalkers and active_workers == 0:
+                    break
+
+                # if rank 0 has no local work, wait for workers
+                if nchunk0 == 0 and active_workers > 0:
+                    finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
+
+                    if next_walker < nwalkers:
+                        nchunk = min(chunk_size, nwalkers - next_walker)
+                        comm.send(nchunk, dest=finished_worker, tag=1)
+                        next_walker += nchunk
+                    else:
+                        comm.send(0, dest=finished_worker, tag=1)
+                        active_workers -= 1
+
         else:
             # worker ranks repeatedly receive chunks
             while True:
@@ -112,7 +143,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
     global_sum_visits = np.zeros((N + 2, N + 2), dtype=float)
     global_sumsq_visits = np.zeros((N + 2, N + 2), dtype=float)
 
-        # combining the sums from all the processors using MPI 
+    # combining the sums from all the processors using MPI 
     comm.Reduce(local_sum_visits, global_sum_visits, op=MPI.SUM, root=0)
     comm.Reduce(local_sumsq_visits, global_sumsq_visits, op=MPI.SUM, root=0)
 
@@ -127,7 +158,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
         else:
             var_visits = np.zeros_like(mean_visits)
 
-        # standard eviation and standard error calculations
+        # standard deviation and standard error calculations
         std_visits = np.sqrt(var_visits)
         stderr_visits = std_visits / np.sqrt(nwalkers)
 
@@ -139,7 +170,6 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
         return G, G_std, G_stderr, mean_visits, std_visits
 
     return None, None, None, None, None
-
 # main section of the program where we implement the grid parameters
 #grid size N x N
 
