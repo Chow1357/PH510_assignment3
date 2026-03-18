@@ -9,7 +9,7 @@ target = 1e-8
 
 # defining the boundary conditions and introducing a potential difference
 V_top = 100.0 
-V_bottom = 100.0
+V_bottom = 0.0
 V_left = 0.0
 V_right = 0.0
 
@@ -19,40 +19,34 @@ h = 1.0 / (N - 1)
 # SOR parameter for square grid 
 omega = 2.0 / (1.0 + np.sin(np.pi / N))
 
-# potential array with halo shape 
-phi = np.zeros([N + 2, N + 2], dtype=float)
+# potential array  
+phi = np.zeros([N, N], dtype=float)
 
 # source term for poisson 
-f = np.zeros([N + 2, N + 2], dtype=float)
+f = np.zeros([N, N], dtype=float)
 
 # example: positive and negative source
-f[N // 4 + 1, N // 4 + 1] = 100.0
-f[3 * N //4 + 1, 3 * N // 4 + 1] = -100.0
+f[N // 4, N // 4] = 100.0
+f[3 * N //4, 3 * N // 4] = -100.0
 
 # setting the physical boundaries where PDE is solved
-phi[1, 1:N+1] = V_top
-phi[N, 1:N+1] = V_bottom 
-phi[1:N+1, 1] = V_left 
-phi[1:N+1, N] = V_right
+phi[0, :] = V_top
+phi[N -1, :] = V_bottom 
+phi[:, 0] = V_left 
+phi[:, N - 1] = V_right
 
-# filling the halo cells by copying the boundary values outward
-phi[0, 1:N+1] = phi[1, 1:N+1] 
-phi[N+1, 1:N+1] = phi[N, 1:N+1]
-phi[1:N+1, 0] = phi[1:N+1, 1]
-phi[1:N+1, N+1] = phi[1:N+1, N]
-
-# corners of the halo
-phi[0, 0] = phi[1, 1]
-phi[0, N+1] = phi[1, N]
-phi[N+1, 0] = phi[N, 1]
-phi[N+1, N+1] = phi[N, N]
+# set corner values
+phi[0, 0] = 0.5 * (V_top + V_left)
+phi[0, N-1] = 0.5 * (V_top + V_right)
+phi[N-1, 0] = 0.5 * (V_bottom + V_left)
+phi[N-1, N-1] = 0.5 * (V_bottom + V_right)
 
 # defining the poisson over relaxation method
-def poisson_sor(phi, f):
+def poisson_sor(phi, f, N, h, omega):
     max_change = 0.0
     
-    for i in range(2, N):
-        for j in range(2, N):
+    for i in range(1, N - 1):
+        for j in range(1, N - 1):
             old_value = phi[i, j]
 
             # Poisson update from the neighbours and the source term f 
@@ -75,7 +69,7 @@ delta = 1.0
 iterations = 0 
 
 while delta > target: 
-    delta = poisson_sor(phi, f)
+    delta = poisson_sor(phi, f, N, h, omega)
     iterations += 1
 
 #print functions for important parameters 
@@ -83,6 +77,14 @@ print("Iterations =", iterations)
 print("Omega =", omega) 
 print("Final max change =", delta) 
 
+# plotting phi 
+plt.figure()
+plt.imshow(phi, origin='lower', extent=[0, 1, 0, 1])
+plt.colorbar(label='Potential (phi)')
+plt.title('Solution of Poisson Equation')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
 
 
 
