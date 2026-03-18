@@ -32,8 +32,8 @@ f[N // 4, N // 4] = 100.0
 f[3 * N //4, 3 * N // 4] = -100.0
 
 # setting the physical boundaries where PDE is solved
-phi[0, :] = V_top
-phi[N -1, :] = V_bottom 
+phi[0, :] = V_bottom
+phi[N -1, :] = V_top 
 phi[:, 0] = V_left 
 phi[:, N - 1] = V_right
 
