@@ -1,5 +1,7 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 import numpy as np 
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 # defining the grid on which we can solve poisson's equation
 N = 50
@@ -84,6 +86,7 @@ plt.colorbar(label='Potential (phi)')
 plt.title('Solution of Poisson Equation')
 plt.xlabel('x')
 plt.ylabel('y')
+plt.savefig("phi.png", dpi=300)
 plt.show()
 
 
