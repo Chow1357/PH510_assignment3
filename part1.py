@@ -1,6 +1,6 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 import numpy as np 
-
+import matplotlib.pyplot as plt
 # defining the grid on which we can solve poisson's equation
 N = 50
 
