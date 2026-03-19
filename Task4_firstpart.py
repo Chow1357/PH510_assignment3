@@ -70,4 +70,6 @@ f = make_zero_charge(N)
 # loop over the three points 
 for point_name, (x_cm, y_cm) in point.items()
     start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
+# evaluate greens function at the point stated
+G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500)
 
