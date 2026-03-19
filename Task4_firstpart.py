@@ -30,3 +30,10 @@ def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
     B[N + 1, N + 1] = 0.5 * (V_top + V_right)
 
     return B
+# Zero-charge array 
+#creating an interior charge-density array with zero everywhere
+def make_zero_charge(N):
+    return np.zeros((N + 2, N + 2), dtype=float)
+
+# Turnign Greens functions into a potential 
+
