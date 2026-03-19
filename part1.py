@@ -110,7 +110,8 @@ if __name__ == "__main__":
 
     # plotting phi 
     plt.figure()
-    plt.imshow(phi, origin='lower', extent=[0, 1, 0, 1])
+    # plotting only interior points instead of the full halo grid
+    plt.imshow(phi[1:N+1, 1:N+1], origin='lower', extent=[0, 1, 0, 1])
     plt.colorbar(label='Potential (phi)')
     plt.title('Solution of Poisson Equation')
     plt.xlabel('x')
