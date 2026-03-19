@@ -47,6 +47,20 @@ def make_uniform_charge(N, rho=10.0):
     return f
 
 # charge gradient from bottom (0) to top (1 C m^-2)
+def make_gradient_charge(N):
+    """
+    charge density varies linearly from 0 at the bottom 
+    to 1 C m^-2 at the top.
+    """
+    f = np.zeros((N + 2, N + 2), dtype=float)
+
+    for i in range(1, N + 1):
+        yfrac = (i - 1) / (N - 1)
+        f[i, 1:N+1] = yfrac
+
+    return f
+
+
 # Turning Greens functions into a potential 
 def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     phi_boundary = np.sum(boundary_prob * B)
