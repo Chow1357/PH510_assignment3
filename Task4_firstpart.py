@@ -66,3 +66,8 @@ boundary_cases = {
 # zero charge array for the first stage
 # no interior charge 
 f = make_zero_charge(N)
+
+# loop over the three points 
+for point_name, (x_cm, y_cm) in point.items()
+    start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
+
