@@ -90,5 +90,7 @@ if __name__ == "__main__":
 
                 # print functions 
                 print(f"  Case: {case_name}")
-                print(f"  phi_total   ={phi_total:.6f} V")
-                
+                print(f"  phi_total    = {phi_total:.6f} V")
+                print(f"  phi_boundary = {phi_boundary:.6f} V")
+                print(f"  phi_charge   = {phi_charge:.6f} V")
+                print(f"  sigma_charge = {sigma_charge:.6f} V")
