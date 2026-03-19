@@ -43,40 +43,46 @@ def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     sigma_charge = np.sqrt(np.sum((G_stderr * f) ** 2))
     return phi_total, phi_boundary, phi_charge, sigma_charge
 
-# defining the main parameters 
-N = 50
-L = 100.0 # cm
-nwalkers = 200000
-seed = 1234
+if __name__ == "__main__":
+    # defining the main parameters 
+    N = 50
+    L = 100.0 # cm
+    nwalkers = 200000
+    seed = 1234
 
-# three points asked to test first (from task 3) 
-points = {
-    "centre": (50.0, 50.0),
-    "corner": (2.0, 2.0),
-    "face": (2.0, 50.0),
-}
+    # three points asked to test first (from task 3) 
+    points = {
+        "centre": (50.0, 50.0),
+        "corner": (2.0, 2.0),
+        "face": (2.0, 50.0),
+    }
 
-#The three boundary condition cases stated in the first part of task 4 
-boundary_cases = {
-    "all_plus_100": (100.0, 100.0, 100.0, 100.0),
-    "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
-    "top_left_200_bottom_0_right_minus400": (200.0, 0.0, 200.0, -400.0),
-}
+    #The three boundary condition cases stated in the first part of task 4 
+    boundary_cases = {
+        "all_plus_100": (100.0, 100.0, 100.0, 100.0),
+        "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
+        "top_left_200_bottom_0_right_minus400": (200.0, 0.0, 200.0, -400.0),
+    }
 
-# zero charge array for the first stage
-# no interior charge 
-f = make_zero_charge(N)
+    # zero charge array for the first stage
+    # no interior charge 
+    f = make_zero_charge(N)
 
-# loop over the three points 
-for point_name, (x_cm, y_cm) in point.items()
-    start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
-# evaluate greens function at the point stated
-G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500)
+    # loop over the three points 
+    for point_name, (x_cm, y_cm) in point.items():
+        start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
+        # evaluate greens function at the point stated
+        G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500)
 
-#ensure only one MPI process prints the results
-if rank ==0:
-    print(f"Point: {point_name}")
-    print(f"Physical coordinates: ({x_cm:.1f} cm, {y_cm:.1f} cm)")
-    print(f"Grid coordinates: ({start_i}, {start_j})")
-    print(f"Boundary probability sum: {np.sum(boundary_prob):.6f}")
+        #ensure only one MPI process prints the results
+        if rank ==0:
+            print()
+            print(f"Point: {point_name}")
+            print(f"Physical coordinates: ({x_cm:.1f} cm, {y_cm:.1f} cm)")
+            print(f"Grid coordinates: ({start_i}, {start_j})")
+            print(f"Boundary probability sum: {np.sum(boundary_prob):.6f}")
+
+            # loop over the three boundary cases 
+            for case_name, (V_top, V_bottom, v_left, V_right) in boundary_cases.items():
+                B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
 
