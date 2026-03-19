@@ -42,3 +42,10 @@ def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     phi_total = phi_boundary + phi_charge
     sigma_charge = np.sqrt(np.sum((G_stderr * f) ** 2))
     return phi_total, phi_boundary, phi_charge, sigma_charge
+
+# defining the main parameters 
+N = 50
+L = 100.0 # cm
+nwalkers = 200000
+seed = 1234
+
