@@ -4,7 +4,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-def make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
     """
     create boundary values on a halo grid.
     Interior poinbts are 1..N and boundaries are 0 and N+1
@@ -52,7 +52,7 @@ def solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=1e-8):
     Solve Poisson's equation on a halo grid using SOR.
     """
     # grid spacing 
-    h = 1.0 / (N - 1) 
+    h = 1.0 / (N + 1) 
     # SOR parameter for square grid 
     omega = 2.0 / (1.0 + np.sin(np.pi / N))
 
@@ -83,7 +83,7 @@ def make_example_charge(N):
     return f
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
 
     # defining the grid on which we can solve poisson's equation
     N = 50
