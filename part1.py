@@ -77,8 +77,8 @@ def make_example_charge(N):
     f = np.zeros([N + 2, N + 2], dtype=float)
 
     # example: positive and negative source
-    f[N // 4, N // 4] = 100.0
-    f[3 * N //4, 3 * N // 4] = -100.0
+    f[N // 4 + 1, N // 4 + 1] = 100.0
+    f[3 * N //4, 3 * N // 4 ] = -100.0
 
     return f
 
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     f = make_example_charge(N)
 
     phi, iterations, omega, delta = solve_poisson_sor(
-        N, f, V_top, V_bottom, V_left, V_right, V_right, target=target
+        N, f, V_top, V_bottom, V_left, V_right, target=target
     )
 
     #print functions for important parameters 
