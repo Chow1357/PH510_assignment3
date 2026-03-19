@@ -60,6 +60,26 @@ def make_gradient_charge(N):
 
     return f
 
+# exponentially decaying charge distribution at the centre 
+def make_exponential_charge(N, L_m=1.0):
+    """
+    Exponentially decaying charge distribution exp(-10 r)
+    centred in the middle of the grid
+    """
+    f = np.zeros((N + 2, N + 2), dtype=float)
+    h = L_m / (N + 1)
+
+    xc = 0.5 * L_m
+    yc = 0.5 * L_m
+
+    for i in range(1, N + 1):
+        y = i * h
+        for j in rnage (1, N + 1):
+            x = j * h
+            r = np.sqrt((x - xc) ** 2 + (y - yc) ** 2)
+            f[i, j] = np.exp(-10.0 * r)
+
+    return f
 
 # Turning Greens functions into a potential 
 def potential_from_greens(G, G_stderr, boundary_prob, B, f):
