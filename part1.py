@@ -9,18 +9,19 @@ def make_boundary_array(N, V_top, V_bottom, V_left, V_right)
     create boundary values on a halo grid.
     Interior poinbts are 1..N and boundaries are 0 and N+1
     """
+    
+    phi = np.zeros((N + 2, N + 2), dtype=float)
 
-# defining the grid on which we can solve poisson's equation
-N = 50
+    phi[0, :] = V_bottom
+    phi[N + 1, :] = V_top
+    phi[:, 0] = V_left
+    phi[:, N +1] = V_right
 
-# target value for change in solution
-target = 1e-8
-
-# defining the boundary conditions and introducing a potential difference
-V_top = 100.0 
-V_bottom = 0.0
-V_left = 0.0
-V_right = 0.0
+    #corner values
+    phi[0, 0] = 0.5 * (V_bottom + V_left)
+    phi[0, N + 1] = 0.5 * (V_bottom + V_right)
+    phi[N + 1, 0] = 0.5 * (V_top + V_left)
+    phi[N + 1, N + 1] = 0.5 * (V_top + V_right)
 
 # grid spacing 
 h = 1.0 / (N - 1) 
@@ -37,18 +38,6 @@ f = np.zeros([N, N], dtype=float)
 # example: positive and negative source
 f[N // 4, N // 4] = 100.0
 f[3 * N //4, 3 * N // 4] = -100.0
-
-# setting the physical boundaries where PDE is solved
-phi[0, :] = V_bottom
-phi[N -1, :] = V_top 
-phi[:, 0] = V_left 
-phi[:, N - 1] = V_right
-
-# set corner values
-phi[0, 0] = 0.5 * (V_bottom + V_left)
-phi[0, N-1] = 0.5 * (V_bottom + V_right)
-phi[N-1, 0] = 0.5 * (V_top + V_left)
-phi[N-1, N-1] = 0.5 * (V_top + V_right)
 
 # defining the poisson over relaxation method
 def poisson_sor(phi, f, N, h, omega):
@@ -80,6 +69,19 @@ iterations = 0
 while delta > target: 
     delta = poisson_sor(phi, f, N, h, omega)
     iterations += 1
+if __name__ == "__main__"
+
+    # defining the grid on which we can solve poisson's equation
+    N = 50
+
+# target value for change in solution
+target = 1e-8
+
+# defining the boundary conditions and introducing a potential difference
+V_top = 100.0 
+V_bottom = 0.0
+V_left = 0.0
+V_right = 0.0
 
 #print functions for important parameters 
 print("Iterations =", iterations) 
