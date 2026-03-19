@@ -110,9 +110,13 @@ if __name__ == "__main__":
         "top_left_200_bottom_0_right_minus400": (200.0, 0.0, 200.0, -400.0),
     }
 
-    # zero charge array for the first stage
-    # no interior charge 
-    f = make_zero_charge(N)
+    # charge cases required
+    charge_cases = {
+        "zero_charge": make_zero_charge(N),
+        "uniform_10C": make_uniform_charge(N, rho=10.0),
+        "gradient_top_to_bottom":make_gradient_charge(N),
+        "exponential_centre": make_exponential_charge(N, L_m=1.0),
+    }
 
     # loop over the three points 
     for point_name, (x_cm, y_cm) in points.items():
