@@ -85,4 +85,10 @@ if __name__ == "__main__":
             # loop over the three boundary cases 
             for case_name, (V_top, V_bottom, v_left, V_right) in boundary_cases.items():
                 B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+                # compute the potential 
+                phi_total, phi_boundary, phi_charge, sigma_charge = potential_from_greens(G, G_stderr, boundary_prob, B, f)
 
+                # print functions 
+                print(f"  Case: {case_name}")
+                print(f"  phi_total   ={phi_total:.6f} V")
+                
