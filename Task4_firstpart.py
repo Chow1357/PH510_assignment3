@@ -56,3 +56,9 @@ points = {
     "face": (2.0, 50.0),
 }
 
+#The three boundary condition cases stated in the first part of task 4 
+boundary_cases = {
+    "all_plus_100": (100.0, 100.0, 100.0, 100.0),
+    "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
+    "top_left_200_bottom_0_right_minus400": (200.0, 0.0, 200.0, -400.0),
+}
