@@ -95,7 +95,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
                 else:
                     nchunk0 = 0
 
-                # keep assigning chunks as workers finish (non-blocking check)
+                # keep assigning chunks as workers finish (non- blocking check)
                 while active_workers > 0 and comm.Iprobe(source=MPI.ANY_SOURCE, tag=2):
                     finished_worker = comm.recv(source=MPI.ANY_SOURCE, tag=2)
 
@@ -163,6 +163,8 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
         stderr_visits = std_visits / np.sqrt(nwalkers)
 
         # conversion of visits to Green's function with 0.25 factor
+        h = 1.0 / (N+1)
+
         G = h*h * mean_visits
         G_std = h*h * std_visits
         G_stderr = h*h * stderr_visits 
