@@ -15,3 +15,18 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
     j = max(1, min(N, j))
     return i, j
 
+# building a new boundary potential array 
+def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
+    B = np.zeros((N + 2, N + 2), dtype=float)
+
+    B[0, :] = V_bottom
+    B[N + 1, :] = V_top
+    B[:, 0] = V_left
+    B[:, N + 1] = V_right
+
+    B[0, 0] = 0.5 * (V_bottom + V_left)
+    B[0, N + 1] = 0.5 * (V_bottom + V_right)
+    B[N + 1, 0] = 0.5 * (V_top + V_left)
+    B[N + 1, N + 1] = 0.5 * (V_top + V_right)
+
+    return B
