@@ -14,7 +14,7 @@ size = comm.Get_size()
 #------------------------------
 def is_boundary(i, j, N):
     """
-    function determines when the walker has
+    function determines whether the walker has
     reached the absorbing boundary
     """
     return i == 0 or i == N+1 or j == 0 or j == N+1
@@ -62,7 +62,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
     # special case: serial run
     if size == 1:
         for _ in range(nwalkers):
-            visits = single_walk(start_i, start_j, N, rng)
+            visits, bi, bj = single_walk(start_i, start_j, N, rng)
             local_sum_visits += visits
             local_sumsq_visits += visits**2
             local_boundary_hits[bi, bj] += 1
@@ -90,7 +90,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
                     next_walker += nchunk0
 
                     for _ in range(nchunk0):
-                        visits = single_walk(start_i, start_j, N, rng)
+                        visits, bi, bj = single_walk(start_i, start_j, N, rng)
                         local_sum_visits += visits
                         local_sumsq_visits += visits**2
                         local_boundary_hits[bi, bj] += 1
@@ -134,7 +134,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
                     break
 
                 for _ in range(nchunk):
-                    visits = single_walk(start_i, start_j, N, rng)
+                    visits, bi, bj = single_walk(start_i, start_j, N, rng)
                     local_sum_visits += visits
                     local_sumsq_visits += visits**2
                     local_boundary_hits[bi, bj] += 1
@@ -173,9 +173,9 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
         
         boundary_prob = global_boundary_hits / nwalkers
 
-        return G, G_std, G_stderr, mean_visits, std_visits
+        return G, G_std, G_stderr, mean_visits, std_visits, boundary_prob
 
-    return None, None, None, None, None
+    return None, None, None, None, None, None
 # main section of the program where we implement the grid parameters
 #grid size N x N
 
@@ -192,8 +192,8 @@ if __name__ == "__main__":
     seed = 1234
 
     #calling the function to return the stated values
-    G, G_std, G_stderr, mean_visits, std_visits = estimate_greens_function(
-    start_i, start_j, N, nwalkers, factor=factor, seed=seed, chunk_size=2500
+    G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(
+    start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500
     )
     # only root prints
     if rank == 0:
@@ -204,3 +204,4 @@ if __name__ == "__main__":
         print("Estimated Greens's function at the start point:", G[start_i, start_j])
         print(f"standard deviation at the start point: {G_std[start_i, start_j]:.6f}")
         print(f"Standard error at start point: {G_stderr[start_i, start_j]:.6f}")
+        print(f"Sum of boundary probabilities: {np.sum(boundary_prob):.6f}")
