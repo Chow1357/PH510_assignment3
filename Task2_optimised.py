@@ -93,6 +93,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
                         visits = single_walk(start_i, start_j, N, rng)
                         local_sum_visits += visits
                         local_sumsq_visits += visits**2
+                        local_boundary_hits[bi, bj] += 1
                 else:
                     nchunk0 = 0
 
@@ -136,18 +137,18 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
                     visits = single_walk(start_i, start_j, N, rng)
                     local_sum_visits += visits
                     local_sumsq_visits += visits**2
-
+                    local_boundary_hits[bi, bj] += 1
                 # tell rank 0 this chunk is complete
                 comm.send(rank, dest=0, tag=2)
 
     # global accumulators on rank 0 
     global_sum_visits = np.zeros((N + 2, N + 2), dtype=float)
     global_sumsq_visits = np.zeros((N + 2, N + 2), dtype=float)
-
+    global_boundary_hits = np.zeros((N + 2, N + 2), dtype=float)
     # combining the sums from all the processors using MPI 
     comm.Reduce(local_sum_visits, global_sum_visits, op=MPI.SUM, root=0)
     comm.Reduce(local_sumsq_visits, global_sumsq_visits, op=MPI.SUM, root=0)
-
+    comm.Reduce(local_boundary_hits, global_boundary_hits, op=MPI.SUM, root=0)
     # computing the mean visits per walker for a point [i, j]
     if rank == 0:
         mean_visits = global_sum_visits / nwalkers
@@ -169,6 +170,8 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
         G = h*h * mean_visits
         G_std = h*h * std_visits
         G_stderr = h*h * stderr_visits 
+        
+        boundary_prob = global_boundary_hits / nwalkers
 
         return G, G_std, G_stderr, mean_visits, std_visits
 
