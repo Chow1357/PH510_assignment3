@@ -103,20 +103,20 @@ if __name__ == "__main__"
         N, f, V_top, V_bottom, V_left, V_right, V_right, target=target
     )
 
-#print functions for important parameters 
-print("Iterations =", iterations) 
-print("Omega =", omega) 
-print("Final max change =", delta) 
+    #print functions for important parameters 
+    print("Iterations =", iterations) 
+    print("Omega =", omega) 
+    print("Final max change =", delta) 
 
-# plotting phi 
-plt.figure()
-plt.imshow(phi, origin='lower', extent=[0, 1, 0, 1])
-plt.colorbar(label='Potential (phi)')
-plt.title('Solution of Poisson Equation')
-plt.xlabel('x')
-plt.ylabel('y')
-plt.savefig("phi.png", dpi=300)
-plt.show()
+    # plotting phi 
+    plt.figure()
+    plt.imshow(phi, origin='lower', extent=[0, 1, 0, 1])
+    plt.colorbar(label='Potential (phi)')
+    plt.title('Solution of Poisson Equation')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.savefig("phi.png", dpi=300)
+    plt.close()
 
 
 
