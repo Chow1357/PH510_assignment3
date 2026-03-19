@@ -62,3 +62,7 @@ boundary_cases = {
     "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
     "top_left_200_bottom_0_right_minus400": (200.0, 0.0, 200.0, -400.0),
 }
+
+# zero charge array for the first stage
+# no interior charge 
+f = make_zero_charge(N)
