@@ -69,7 +69,7 @@ if __name__ == "__main__":
     f = make_zero_charge(N)
 
     # loop over the three points 
-    for point_name, (x_cm, y_cm) in point.items():
+    for point_name, (x_cm, y_cm) in points.items():
         start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
         # evaluate greens function at the point stated
         G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500)
@@ -83,7 +83,7 @@ if __name__ == "__main__":
             print(f"Boundary probability sum: {np.sum(boundary_prob):.6f}")
 
             # loop over the three boundary cases 
-            for case_name, (V_top, V_bottom, v_left, V_right) in boundary_cases.items():
+            for case_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
                 B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
                 # compute the potential 
                 phi_total, phi_boundary, phi_charge, sigma_charge = potential_from_greens(G, G_stderr, boundary_prob, B, f)
