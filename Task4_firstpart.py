@@ -35,6 +35,18 @@ def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
 def make_zero_charge(N):
     return np.zeros((N + 2, N + 2), dtype=float)
 
+# uniform charge density over the interior
+def make_uniform_charge(N, rho=10.0):
+    """
+    Uniform charge density over the interior grid.
+    Since the square is 1 m x 1 m, using rho=10.0 corresponds
+    to 10 C spread uniformly over the whole grid.
+    """
+    f = np.zeros((N + 2, N + 2), dtype=float)
+    f[1:N+1, 1:N+1] = rho
+    return f
+
+# charge gradient from bottom (0) to top (1 C m^-2)
 # Turning Greens functions into a potential 
 def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     phi_boundary = np.sum(boundary_prob * B)
@@ -67,16 +79,6 @@ if __name__ == "__main__":
     # zero charge array for the first stage
     # no interior charge 
     f = make_zero_charge(N)
-    
-    def make_uniform_charge(N, rho=10.0):
-    """
-    Uniform charge density over the interior grid.
-    Since the square is 1 m x 1 m, using rho=10.0 corresponds
-    to 10 C spread uniformly over the whole grid.
-    """
-    f = np.zeros((N + 2, N + 2), dtype=float)
-    f[1:N+1, 1:N+1] = rho
-    return f
 
     # loop over the three points 
     for point_name, (x_cm, y_cm) in points.items():
