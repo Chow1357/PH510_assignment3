@@ -43,7 +43,7 @@ def single_walk(start_i, start_j, N, rng):
     return visits
 
 # monte carlo Greens's function with dynamic load balancing 
-def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=None, chunk_size=2500):
+def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_size=2500):
     """
     Estimate the Green's function using MPI with dynamic chunk scheduling
     """
@@ -57,6 +57,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
     # local accumulators on each rank
     local_sum_visits = np.zeros((N + 2, N + 2), dtype=float)
     local_sumsq_visits = np.zeros((N + 2, N + 2), dtype=float)
+    local_boundary_hits = np.zeros((N + 2, N + 2)), dtype=float)
 
     # special case: serial run
     if size == 1:
@@ -64,7 +65,7 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
             visits = single_walk(start_i, start_j, N, rng)
             local_sum_visits += visits
             local_sumsq_visits += visits**2
-
+            local_boundary_hits[bi, bj] += 1
     else:
         if rank == 0:
             next_walker = 0
