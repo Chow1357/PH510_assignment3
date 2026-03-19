@@ -49,3 +49,10 @@ L = 100.0 # cm
 nwalkers = 200000
 seed = 1234
 
+# three points asked to test first (from task 3) 
+points = {
+    "centre": (50.0, 50.0),
+    "corner": (2.0, 2.0),
+    "face": (2.0, 50.0),
+}
+
