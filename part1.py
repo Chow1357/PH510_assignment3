@@ -3,6 +3,13 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
+def make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+    """
+    create boundary values on a halo grid.
+    Interior poinbts are 1..N and boundaries are 0 and N+1
+    """
+
 # defining the grid on which we can solve poisson's equation
 N = 50
 
