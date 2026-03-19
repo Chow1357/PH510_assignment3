@@ -132,15 +132,19 @@ if __name__ == "__main__":
             print(f"Grid coordinates: ({start_i}, {start_j})")
             print(f"Boundary probability sum: {np.sum(boundary_prob):.6f}")
 
-            # loop over the three boundary cases 
-            for case_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
-                B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
-                # compute the potential 
-                phi_total, phi_boundary, phi_charge, sigma_charge = potential_from_greens(G, G_stderr, boundary_prob, B, f)
+            # loop over al charge cases 
+            for charge_name, f in charge_cases.items():
+                print(f" Charge case: {charge_name}")
 
-                # print functions 
-                print(f"  Case: {case_name}")
-                print(f"  phi_total    = {phi_total:.6f} V")
-                print(f"  phi_boundary = {phi_boundary:.6f} V")
-                print(f"  phi_charge   = {phi_charge:.6f} V")
-                print(f"  sigma_charge = {sigma_charge:.6f} V")
+                # loop over the three boundary cases 
+                for case_name, (V_top, V_bottom, V_left, V_right) in  boundary_cases.items():
+                    B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+                    # compute the potential 
+                    phi_total, phi_boundary, phi_charge, sigma_charge = potential_from_greens(G, G_stderr, boundary_prob, B, f)
+
+                    # print functions 
+                    print(f"  Case: {case_name}")
+                    print(f"  phi_total    = {phi_total:.6f} V")
+                    print(f"  phi_boundary = {phi_boundary:.6f} V")
+                    print(f"  phi_charge   = {phi_charge:.6f} V")
+                    print(f"  sigma_charge = {sigma_charge:.6f} V")
