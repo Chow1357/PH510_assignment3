@@ -163,9 +163,9 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, factor=0.25, seed=No
         stderr_visits = std_visits / np.sqrt(nwalkers)
 
         # conversion of visits to Green's function with 0.25 factor
-        G = factor * mean_visits
-        G_std = factor * std_visits
-        G_stderr = factor * stderr_visits 
+        G = h*h * mean_visits
+        G_std = h*h * std_visits
+        G_stderr = h*h * stderr_visits 
 
         return G, G_std, G_stderr, mean_visits, std_visits
 
@@ -182,8 +182,7 @@ if __name__ == "__main__":
 
     # test point near the centre 
     start_i = 25 
-    start_j = 25 
-    factor = 0.25 
+    start_j = 25
     seed = 1234
 
     #calling the function to return the stated values
