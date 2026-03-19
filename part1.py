@@ -23,28 +23,14 @@ def make_boundary_array(N, V_top, V_bottom, V_left, V_right)
     phi[N + 1, 0] = 0.5 * (V_top + V_left)
     phi[N + 1, N + 1] = 0.5 * (V_top + V_right)
 
-# grid spacing 
-h = 1.0 / (N - 1) 
-
-# SOR parameter for square grid 
-omega = 2.0 / (1.0 + np.sin(np.pi / N))
-
-# potential array  
-phi = np.zeros([N, N], dtype=float)
-
-# source term for poisson 
-f = np.zeros([N, N], dtype=float)
-
-# example: positive and negative source
-f[N // 4, N // 4] = 100.0
-f[3 * N //4, 3 * N // 4] = -100.0
+    return phi 
 
 # defining the poisson over relaxation method
 def poisson_sor(phi, f, N, h, omega):
     max_change = 0.0
     
-    for i in range(1, N - 1):
-        for j in range(1, N - 1):
+    for i in range(1, N + 1):
+        for j in range(1, N + 1):
             old_value = phi[i, j]
 
             # Poisson update from the neighbours and the source term f 
@@ -60,6 +46,26 @@ def poisson_sor(phi, f, N, h, omega):
             if change > max_change:
                 max_change = change
     return max_change
+
+def solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=1e-8):
+    """
+    Solve Poisson's equation on a halo grid using SOR.
+    """
+# grid spacing 
+h = 1.0 / (N - 1) 
+
+# SOR parameter for square grid 
+omega = 2.0 / (1.0 + np.sin(np.pi / N))
+
+# potential array  
+phi = np.zeros([N, N], dtype=float)
+
+# source term for poisson 
+f = np.zeros([N, N], dtype=float)
+
+# example: positive and negative source
+f[N // 4, N // 4] = 100.0
+f[3 * N //4, 3 * N // 4] = -100.0
 
 #starting the loop which repeats the SOR sweep until convergence is acheived
 #i.e tolerance is exceeded
