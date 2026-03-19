@@ -74,7 +74,7 @@ def make_exponential_charge(N, L_m=1.0):
 
     for i in range(1, N + 1):
         y = i * h
-        for j in rnage (1, N + 1):
+        for j in range (1, N + 1):
             x = j * h
             r = np.sqrt((x - xc) ** 2 + (y - yc) ** 2)
             f[i, j] = np.exp(-10.0 * r)
