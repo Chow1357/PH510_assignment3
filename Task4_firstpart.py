@@ -73,3 +73,10 @@ for point_name, (x_cm, y_cm) in point.items()
 # evaluate greens function at the point stated
 G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500)
 
+#ensure only one MPI process prints the results
+if rank ==0:
+    print(f"Point: {point_name}")
+    print(f"Physical coordinates: ({x_cm:.1f} cm, {y_cm:.1f} cm)")
+    print(f"Grid coordinates: ({start_i}, {start_j})")
+    print(f"Boundary probability sum: {np.sum(boundary_prob):.6f}")
+
