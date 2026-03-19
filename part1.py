@@ -38,10 +38,10 @@ phi[:, 0] = V_left
 phi[:, N - 1] = V_right
 
 # set corner values
-phi[0, 0] = 0.5 * (V_top + V_left)
-phi[0, N-1] = 0.5 * (V_top + V_right)
-phi[N-1, 0] = 0.5 * (V_bottom + V_left)
-phi[N-1, N-1] = 0.5 * (V_bottom + V_right)
+phi[0, 0] = 0.5 * (V_bottom + V_left)
+phi[0, N-1] = 0.5 * (V_bottom + V_right)
+phi[N-1, 0] = 0.5 * (V_top + V_left)
+phi[N-1, N-1] = 0.5 * (V_top + V_right)
 
 # defining the poisson over relaxation method
 def poisson_sor(phi, f, N, h, omega):
