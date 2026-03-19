@@ -88,14 +88,20 @@ if __name__ == "__main__"
     # defining the grid on which we can solve poisson's equation
     N = 50
 
-# target value for change in solution
-target = 1e-8
+    # target value for change in solution
+    target = 1e-8
 
-# defining the boundary conditions and introducing a potential difference
-V_top = 100.0 
-V_bottom = 0.0
-V_left = 0.0
-V_right = 0.0
+    # defining the boundary conditions and introducing a potential difference
+    V_top = 100.0 
+    V_bottom = 0.0
+    V_left = 0.0
+    V_right = 0.0
+    
+    f = make_example_charge(N)
+
+    phi, iterations, omega, delta = solve_poisson_sor(
+        N, f, V_top, V_bottom, V_left, V_right, V_right, target=target
+    )
 
 #print functions for important parameters 
 print("Iterations =", iterations) 
