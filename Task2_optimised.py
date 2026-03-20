@@ -1,8 +1,5 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 from mpi4py import MPI
 
 comm = MPI.COMM_WORLD
