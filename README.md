@@ -24,4 +24,28 @@ SOFTWARE.
 ## repository naviagtion 
 Task 1 files: 
 program - part1.py 
-output 
+output - part1_main.out 
+job script - part1_run.sh 
+
+Task 2 files: 
+program - Task2_optimised.py 
+output - Task2_optimisedrun.out 
+job script - Task2_optimised.sh
+
+Task 3 files:
+program - Task3.py, Task3_selectedcase.py
+outputs - Task3.out, task3_selectedcase.out, greens_function_2_2.png, greens_function_50_50.png, greens_function_2_50.png
+job script - Task3.sh, Task3_selectedcase.sh
+
+Task 4 files:
+program - Task4.py 
+output - Task4_best.out 
+job script - Task4.sh 
+
+Task 5 files: 
+program - comparison_Task5.py 
+output - results.csv (table for 36 cases) 
+job script - comparison_task5.sh 
+
+
+
