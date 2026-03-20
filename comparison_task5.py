@@ -60,6 +60,14 @@ if __name__ == "__main__":
             for charge_name, f in charge_cases.items():
                 for boundary_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
                 boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+                # reconstruct the stochastic potential from the Green's function 
+                phi_green, phi_boundary, phi_charge, sigma_green = potential_from_greens(
+                    g_charge, g_charge_stderr, boundary_prob, boundary_values, f)
 
-                
+                phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=target)
+
+                # compute deterministic potential 
+                phi_det = phi_det_grid[start_i, start_j]
+
+
         
