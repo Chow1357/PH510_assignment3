@@ -68,7 +68,8 @@ if __name__ == "__main__":
                     phi_green, phi_boundary, phi_charge, sigma_green = potential_from_greens(
                         g_charge, g_charge_stderr, boundary_prob, boundary_values, f)
 
-                    phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=target)
+                    boundaries = (V_top, V_bottom, V_left, V_right)
+                    phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, boundaries, target=target)
 
                     # compute deterministic potential 
                     phi_det = phi_det_grid[start_i, start_j]
@@ -97,8 +98,3 @@ if __name__ == "__main__":
                 f"{row[5]:.6f},"
                 f"{row[6]:.6e}"
             )
-                
-                
-
-
-        
