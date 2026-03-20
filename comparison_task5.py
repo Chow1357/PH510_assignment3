@@ -66,7 +66,7 @@ if __name__ == "__main__":
                     boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
                     # reconstruct the stochastic potential from the Green's function 
                     phi_green, phi_boundary, phi_charge, sigma_boundary, sigma_charge, sigma_total = potential_from_greens(
-                        g_charge, g_charge_stderr, boundary_prob, boundary_values, f, n_walkers)
+                        g_charge, g_charge_stderr, boundary_prob, boundary_values, f, nwalkers)
 
                     boundaries = (V_top, V_bottom, V_left, V_right)
                     phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, boundaries, target=target)
