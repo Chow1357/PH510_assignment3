@@ -82,7 +82,7 @@ def make_exponential_charge(N, L_m=1.0):
     return f
 
 # Turning Greens functions into a potential 
-def potential_from_greens(G, G_stderr, boundary_prob, B, f):
+def potential_from_greens(G, G_stderr, boundary_prob, B, f, nwalkers):
     phi_boundary = np.sum(boundary_prob * B)
     phi_charge = -0.25 * np.sum(G * f) 
     phi_total = phi_boundary + phi_charge
@@ -151,7 +151,7 @@ if __name__ == "__main__":
                 for case_name, (V_top, V_bottom, V_left, V_right) in  boundary_cases.items():
                     B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
                     # compute the potential 
-                    phi_total, phi_boundary, phi_charge,sigma_boundary, sigma_charge, sigma_total = potential_from_greens(G, G_stderr, boundary_prob, B, f)
+                    phi_total, phi_boundary, phi_charge,sigma_boundary, sigma_charge, sigma_total = potential_from_greens(G, G_stderr, boundary_prob, B, f, nwalkers)
 
                     # print functions 
                     print(f"  Case: {case_name}")
