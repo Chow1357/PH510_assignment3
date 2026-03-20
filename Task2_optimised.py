@@ -33,8 +33,8 @@ def single_walk(start_i, start_j, N, rng):
 
     while not is_boundary(i, j, N):
         visits[i, j] += 1
-        # this matches 
-        step = rng.integers(4) # random number generator with equal probability (directions) 
+        # this matches
+        step = rng.integers(4) # random number generator with equal probability (directions)
         if step == 0:
             i += 1
         elif step == 1:
@@ -45,18 +45,18 @@ def single_walk(start_i, start_j, N, rng):
             j -= 1
     return visits, i, j
 
-# monte carlo Greens's function with dynamic load balancing 
+# monte carlo Greens's function with dynamic load balancing
 def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_size=2500):
     """
     Estimate the discrete charge-related Green's function using Monte carlo random walks.
-    
+
     Each walker starts at (start_i, start_j), performs an unbiased random walk,
     and terminates upon reaching the boundary. The Green's function is estimated as:
         G = h^2 * <number of visits>
-    Boundary-hit probabilities are also accumulated to represent the 
+    Boundary-hit probabilities are also accumulated to represent the
     edge-potential (laplace) contributio
     """
-    
+
     # random number generator, giving a different stream per rank
     if seed is None:
         rng = np.random.default_rng()
@@ -150,18 +150,18 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
                 # tell rank 0 this chunk is complete
                 comm.send(rank, dest=0, tag=2)
 
-    # global accumulators on rank 0 
+    # global accumulators on rank 0
     global_sum_visits = np.zeros((N + 2, N + 2), dtype=float)
     global_sumsq_visits = np.zeros((N + 2, N + 2), dtype=float)
     global_boundary_hits = np.zeros((N + 2, N + 2), dtype=float)
-    # combining the sums from all the processors using MPI 
+    # combining the sums from all the processors using MPI
     comm.Reduce(local_sum_visits, global_sum_visits, op=MPI.SUM, root=0)
     comm.Reduce(local_sumsq_visits, global_sumsq_visits, op=MPI.SUM, root=0)
     comm.Reduce(local_boundary_hits, global_boundary_hits, op=MPI.SUM, root=0)
     # computing the mean visits per walker for a point [i, j]
     if rank == 0:
         mean_visits = global_sum_visits / nwalkers
- 
+
         # computing the variance
         if nwalkers > 1:
             var_visits = (global_sumsq_visits - nwalkers * mean_visits**2) / (nwalkers - 1)
@@ -175,11 +175,11 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
 
         # conversion of visits to Green's function with h^2 factor
         h = 1.0 / (N+1)
-        # convert expected visit counts into the discrete green's function 
+        # convert expected visit counts into the discrete green's function
         G = h*h * mean_visits
         G_std = h*h * std_visits
-        G_stderr = h*h * stderr_visits 
-        
+        G_stderr = h*h * stderr_visits
+
         boundary_prob = global_boundary_hits / nwalkers
 
         return G, G_std, G_stderr, mean_visits, std_visits, boundary_prob
@@ -190,13 +190,13 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
 
 if __name__ == "__main__":
 
-    N = 50 
+    N = 50
 
     # number of walkers across all MPI ranks
     nwalkers = 200000
 
-    # test point near the centre 
-    start_i = 25 
+    # test point near the centre
+    start_i = 25
     start_j = 25
     seed = 1234
 

@@ -15,7 +15,7 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
     j = max(1, min(N, j))
     return i, j
 
-# building a new boundary potential array 
+# building a new boundary potential array
 def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
     B = np.zeros((N + 2, N + 2), dtype=float)
 
@@ -30,7 +30,7 @@ def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
     B[N + 1, N + 1] = 0.5 * (V_top + V_right)
 
     return B
-# Zero-charge array 
+# Zero-charge array
 #creating an interior charge-density array with zero everywhere
 def make_zero_charge(N):
     return np.zeros((N + 2, N + 2), dtype=float)
@@ -49,7 +49,7 @@ def make_uniform_charge(N, rho=10.0):
 # charge gradient from bottom (0) to top (1 C m^-2)
 def make_gradient_charge(N):
     """
-    charge density varies linearly from 0 at the bottom 
+    charge density varies linearly from 0 at the bottom
     to 1 C m^-2 at the top.
     """
     f = np.zeros((N + 2, N + 2), dtype=float)
@@ -60,7 +60,7 @@ def make_gradient_charge(N):
 
     return f
 
-# exponentially decaying charge distribution at the centre 
+# exponentially decaying charge distribution at the centre
 def make_exponential_charge(N, L_m=1.0):
     """
     Exponentially decaying charge distribution exp(-10 r)
@@ -81,10 +81,10 @@ def make_exponential_charge(N, L_m=1.0):
 
     return f
 
-# Turning Greens functions into a potential 
+# Turning Greens functions into a potential
 def potential_from_greens(G, G_stderr, boundary_prob, B, f, nwalkers):
     phi_boundary = np.sum(boundary_prob * B)
-    phi_charge = -0.25 * np.sum(G * f) 
+    phi_charge = -0.25 * np.sum(G * f)
     phi_total = phi_boundary + phi_charge
 
     # boundary uncertainty from finite sampling of exit porbabilities
@@ -101,20 +101,20 @@ def potential_from_greens(G, G_stderr, boundary_prob, B, f, nwalkers):
     return phi_total, phi_boundary, phi_charge, sigma_boundary, sigma_charge, sigma_total
 
 if __name__ == "__main__":
-    # defining the main parameters 
+    # defining the main parameters
     N = 50
     L = 100.0 # cm
     nwalkers = 200000
     seed = 1234
 
-    # three points asked to test first (from task 3) 
+    # three points asked to test first (from task 3)
     points = {
         "centre": (50.0, 50.0),
         "corner": (2.0, 2.0),
         "face": (2.0, 50.0),
     }
 
-    #The three boundary condition cases stated in the first part of task 4 
+    #The three boundary condition cases stated in the first part of task 4
     boundary_cases = {
         "all_plus_100": (100.0, 100.0, 100.0, 100.0),
         "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
@@ -129,7 +129,7 @@ if __name__ == "__main__":
         "exponential_centre": make_exponential_charge(N, L_m=1.0),
     }
 
-    # loop over the three points 
+    # loop over the three points
     for point_name, (x_cm, y_cm) in points.items():
         start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
         # evaluate greens function at the point stated
@@ -143,17 +143,17 @@ if __name__ == "__main__":
             print(f"Grid coordinates: ({start_i}, {start_j})")
             print(f"Boundary probability sum: {np.sum(boundary_prob):.6f}")
 
-            # loop over al charge cases 
+            # loop over al charge cases
             for charge_name, f in charge_cases.items():
                 print(f" Charge case: {charge_name}")
 
-                # loop over the three boundary cases 
+                # loop over the three boundary cases
                 for case_name, (V_top, V_bottom, V_left, V_right) in  boundary_cases.items():
                     B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
-                    # compute the potential 
+                    # compute the potential
                     phi_total, phi_boundary, phi_charge,sigma_boundary, sigma_charge, sigma_total = potential_from_greens(G, G_stderr, boundary_prob, B, f, nwalkers)
 
-                    # print functions 
+                    # print functions
                     print(f"  Case: {case_name}")
                     print(f"  phi_total    = {phi_total:.6f} V")
                     print(f"  phi_boundary = {phi_boundary:.6f} V")

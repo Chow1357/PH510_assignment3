@@ -1,6 +1,9 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
-import numpy as np
-from mpi4py import MPI
+"""
+this code runs on python3.10.9
+Comapre stochastic green's function potentials with deterministic SOR reuslts
+"""
+from mpi4py import MPI # pylint: disable=no-name-in-module
 
 #importing functiosn from other scripts to save rewriting
 from Task2_optimised import estimate_greens_function

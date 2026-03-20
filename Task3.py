@@ -20,7 +20,7 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
     """
 
     h = L_cm / (N+1)
-    
+
     i = int(round(y_cm / h))
     j = int(round(x_cm / h))
 
@@ -31,16 +31,16 @@ def physical_to_grid(x_cm, y_cm, L_cm, N):
     return i, j
 
 if __name__ == "__main__":
-    N = 50 
+    N = 50
     nwalkers = 200000
     L = 100  # cm
 
     # defining the different points to test on the grid in length scale
-    points = {"centre": (50, 50),"corner": (2, 2),"face": (2, 50)}  
+    points = {"centre": (50, 50),"corner": (2, 2),"face": (2, 50)}
 
-    for name, (x_cm, y_cm) in points.items(): 
+    for name, (x_cm, y_cm) in points.items():
         start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
- 
+
         G, G_std, G_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=1234, chunk_size=2500)
 
         if rank == 0:
@@ -62,4 +62,4 @@ if __name__ == "__main__":
             plt.tight_layout()
             plt.savefig(f"greens_function_{x_cm}_{y_cm}.png", dpi=300)
             plt.close()
-    
+
