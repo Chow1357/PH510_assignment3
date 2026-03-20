@@ -98,7 +98,7 @@ def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     # combined unceratinty
     sigma_total = np.sqrt(sigma_boundary ** 2 + sigma_charge ** 2)
 
-    return phi_total, phi_boundary, phi_charge, sigma_charge
+    return phi_total, phi_boundary, phi_charge, sigma_boundary, sigma_charge, sigma_total
 
 if __name__ == "__main__":
     # defining the main parameters 
@@ -151,11 +151,13 @@ if __name__ == "__main__":
                 for case_name, (V_top, V_bottom, V_left, V_right) in  boundary_cases.items():
                     B = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
                     # compute the potential 
-                    phi_total, phi_boundary, phi_charge, sigma_charge = potential_from_greens(G, G_stderr, boundary_prob, B, f)
+                    phi_total, phi_boundary, phi_charge,sigma_boundary, sigma_charge, sigma_total = potential_from_greens(G, G_stderr, boundary_prob, B, f)
 
                     # print functions 
                     print(f"  Case: {case_name}")
                     print(f"  phi_total    = {phi_total:.6f} V")
                     print(f"  phi_boundary = {phi_boundary:.6f} V")
                     print(f"  phi_charge   = {phi_charge:.6f} V")
-                    print(f"  sigma_charge = {sigma_charge:.6f} V")
+                    print(f"  sigma_boundary = {sigma_boundary:.6f} V")
+                    print(f"  sigma_charge   = {sigma_charge:.6f} V")
+                    print(f"  sigma_total    = {sigma_total:.6f} V")
