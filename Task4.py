@@ -84,9 +84,9 @@ def make_exponential_charge(N, L_m=1.0):
 # Turning Greens functions into a potential 
 def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     phi_boundary = np.sum(boundary_prob * B)
-    phi_charge = -0.25 * np.sum(G * f) 
+    phi_charge = np.sum(G * f) 
     phi_total = phi_boundary + phi_charge
-    sigma_charge = 0.25 * np.sqrt(np.sum((G_stderr * f) ** 2))
+    sigma_charge = np.sqrt(np.sum((G_stderr * f) ** 2))
     return phi_total, phi_boundary, phi_charge, sigma_charge
 
 if __name__ == "__main__":
