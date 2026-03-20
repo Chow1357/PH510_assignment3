@@ -84,9 +84,20 @@ def make_exponential_charge(N, L_m=1.0):
 # Turning Greens functions into a potential 
 def potential_from_greens(G, G_stderr, boundary_prob, B, f):
     phi_boundary = np.sum(boundary_prob * B)
-    phi_charge = np.sum(G * f) 
+    phi_charge = -0.25 * np.sum(G * f) 
     phi_total = phi_boundary + phi_charge
-    sigma_charge = np.sqrt(np.sum((G_stderr * f) ** 2))
+
+    # boundary uncertainty from finite sampling of exit porbabilities
+    second_moment_boundary = np.sum(boundary_prob * (B ** 2))
+    var_boundary = max(second_moment_boundary - phi_boundary ** 2, 0.0)
+    sigma_boundary = np.sqrt(var_boundary / nwalkers)
+
+    # charge uncertainty
+    sigma_charge = 0.25 * np.sqrt(np.sum((G_stderr * f) ** 2))
+
+    # combined unceratinty
+    sigma_total = np.sqrt(sigma_boundary ** 2 + sigma_charge ** 2)
+
     return phi_total, phi_boundary, phi_charge, sigma_charge
 
 if __name__ == "__main__":
