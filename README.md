@@ -22,3 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## repository naviagtion 
+Task 1 files: 
+program - part1.py 
+output 
