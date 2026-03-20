@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 def make_boundary_array(N, V_top, V_bottom, V_left, V_right):
     """
     create boundary values on a halo grid.
-    Interior poinbts are 1..N and boundaries are 0 and N+1
+    Interior points are 1..N and boundaries are 0 and N+1
     """
     
     phi = np.zeros((N + 2, N + 2), dtype=float)
@@ -58,7 +58,7 @@ def solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=1e-8):
 
     # potential array  
     phi = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
-    #starting the loop which repeats the SOR sweep until convergence is      acheived
+    #starting the loop which repeats the SOR sweep until convergence is acheived
     #i.e tolerance is exceeded
     delta = 1.0 
     iterations = 0  
