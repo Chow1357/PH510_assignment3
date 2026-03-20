@@ -21,6 +21,8 @@ rank = comm.Get_rank()
 if __name__ == "__main__":
     # defining the main parameters 
     N = 50
+    # target 
+    target = 1e-8
     L = 100.0 # cm
     nwalkers = 200000
     seed = 1234
@@ -51,7 +53,7 @@ if __name__ == "__main__":
     
     # loop over the points
     for point_name, (x_cm, y_cm) in points.items():
-        start_i, start_j = physical_to_grid(x_cm, y_cm, L_cm, N)
+        start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
 
         g_charge, g_charge_std, g_charge_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500
         )
@@ -59,27 +61,27 @@ if __name__ == "__main__":
         if rank == 0:
             for charge_name, f in charge_cases.items():
                 for boundary_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
-                boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
-                # reconstruct the stochastic potential from the Green's function 
-                phi_green, phi_boundary, phi_charge, sigma_green = potential_from_greens(
-                    g_charge, g_charge_stderr, boundary_prob, boundary_values, f)
+                    boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+                    # reconstruct the stochastic potential from the Green's function 
+                    phi_green, phi_boundary, phi_charge, sigma_green = potential_from_greens(
+                        g_charge, g_charge_stderr, boundary_prob, boundary_values, f)
 
-                phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=target)
+                    phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, V_top, V_bottom, V_left, V_right, target=target)
 
-                # compute deterministic potential 
-                phi_det = phi_det_grid[start_i, start_j]
-                # compute absolute difference between stochastic and deterministic potentials
-                difference = abs(phi_green - phi_det)
-                # this become row of the output table
-                rows.append([
-                    point_name,
-                    boundary_name,
-                    charge_name,
-                    phi_green,
-                    sigma_green,
-                    phi_det,
-                    difference,
-                ])
+                    # compute deterministic potential 
+                    phi_det = phi_det_grid[start_i, start_j]
+                    # compute absolute difference between stochastic and deterministic potentials
+                    difference = abs(phi_green - phi_det)
+                    # this become row of the output table
+                    rows.append([
+                        point_name,
+                        boundary_name,
+                        charge_name,
+                        phi_green,
+                        sigma_green,
+                        phi_det,
+                        difference,
+                    ])
     
     if rank == 0:
         print("point, boundary_case, charge_case, phi_green_V,sigma_green_V,phi_sor_V,abs_difference_V")
