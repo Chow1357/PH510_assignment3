@@ -55,7 +55,9 @@ if __name__ == "__main__":
     for point_name, (x_cm, y_cm) in points.items():
         start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
 
-        g_charge, g_charge_std, g_charge_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500
+        g_charge, g_charge_std, g_charge_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(
+            start_i, start_j, N, nwalkers,
+            seed=seed, chunk_size=2500
         )
     
         if rank == 0:
