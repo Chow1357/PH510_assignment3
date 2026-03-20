@@ -1,0 +1,16 @@
+Iterations = 228
+Omega = 1.8818383898322277
+Final max change = 9.726702998591463e-09
+
+ Performance counter stats for 'python3 part1.py':
+
+        5615671467      cycles:u                                                              
+       12559881545      instructions:u                   #    2.24  insn per cycle            
+          13595053      cache-misses:u                                                        
+
+       7.931670837 seconds time elapsed
+
+       2.524240000 seconds user
+       0.237523000 seconds sys
+
+

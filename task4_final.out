@@ -1,0 +1,293 @@
+Loading mpi version 2021.6.0
+
+Point: centre
+Physical coordinates: (50.0 cm, 50.0 cm)
+Grid coordinates: (26, 26)
+Boundary probability sum: 1.000000
+ Charge case: zero_charge
+  Case: all_plus_100
+  phi_total    = 100.000000 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.000000 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.193000 V
+  phi_boundary = -0.193000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.223606 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.223606 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = -3.387000 V
+  phi_boundary = -3.387000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.553974 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.553974 V
+ Charge case: uniform_10C
+  Case: all_plus_100
+  phi_total    = 99.263861 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.736139 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000122 V
+  sigma_total    = 0.000122 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.929139 V
+  phi_boundary = -0.193000 V
+  phi_charge   = -0.736139 V
+  sigma_boundary = 0.223606 V
+  sigma_charge   = 0.000122 V
+  sigma_total    = 0.223606 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = -4.123139 V
+  phi_boundary = -3.387000 V
+  phi_charge   = -0.736139 V
+  sigma_boundary = 0.553974 V
+  sigma_charge   = 0.000122 V
+  sigma_total    = 0.553974 V
+ Charge case: gradient_top_to_bottom
+  Case: all_plus_100
+  phi_total    = 99.962824 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.037176 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000007 V
+  sigma_total    = 0.000007 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.230176 V
+  phi_boundary = -0.193000 V
+  phi_charge   = -0.037176 V
+  sigma_boundary = 0.223606 V
+  sigma_charge   = 0.000007 V
+  sigma_total    = 0.223606 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = -3.424176 V
+  phi_boundary = -3.387000 V
+  phi_charge   = -0.037176 V
+  sigma_boundary = 0.553974 V
+  sigma_charge   = 0.000007 V
+  sigma_total    = 0.553974 V
+ Charge case: exponential_centre
+  Case: all_plus_100
+  phi_total    = 99.987359 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.012641 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000003 V
+  sigma_total    = 0.000003 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.205641 V
+  phi_boundary = -0.193000 V
+  phi_charge   = -0.012641 V
+  sigma_boundary = 0.223606 V
+  sigma_charge   = 0.000003 V
+  sigma_total    = 0.223606 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = -3.399641 V
+  phi_boundary = -3.387000 V
+  phi_charge   = -0.012641 V
+  sigma_boundary = 0.553974 V
+  sigma_charge   = 0.000003 V
+  sigma_total    = 0.553974 V
+
+Point: corner
+Physical coordinates: (2.0 cm, 2.0 cm)
+Grid coordinates: (1, 1)
+Boundary probability sum: 1.000000
+ Charge case: zero_charge
+  Case: all_plus_100
+  phi_total    = 100.000000 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.000000 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.005000 V
+  phi_boundary = -0.005000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.223607 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.223607 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 99.842000 V
+  phi_boundary = 99.842000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.224731 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.224731 V
+ Charge case: uniform_10C
+  Case: all_plus_100
+  phi_total    = 99.990925 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.009075 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000011 V
+  sigma_total    = 0.000011 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.014075 V
+  phi_boundary = -0.005000 V
+  phi_charge   = -0.009075 V
+  sigma_boundary = 0.223607 V
+  sigma_charge   = 0.000011 V
+  sigma_total    = 0.223607 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 99.832925 V
+  phi_boundary = 99.842000 V
+  phi_charge   = -0.009075 V
+  sigma_boundary = 0.224731 V
+  sigma_charge   = 0.000011 V
+  sigma_total    = 0.224731 V
+ Charge case: gradient_top_to_bottom
+  Case: all_plus_100
+  phi_total    = 99.999861 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.000139 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.000000 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.005139 V
+  phi_boundary = -0.005000 V
+  phi_charge   = -0.000139 V
+  sigma_boundary = 0.223607 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.223607 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 99.841861 V
+  phi_boundary = 99.842000 V
+  phi_charge   = -0.000139 V
+  sigma_boundary = 0.224731 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.224731 V
+ Charge case: exponential_centre
+  Case: all_plus_100
+  phi_total    = 99.999971 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.000029 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.000000 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -0.005029 V
+  phi_boundary = -0.005000 V
+  phi_charge   = -0.000029 V
+  sigma_boundary = 0.223607 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.223607 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 99.841971 V
+  phi_boundary = 99.842000 V
+  phi_charge   = -0.000029 V
+  sigma_boundary = 0.224731 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.224731 V
+
+Point: face
+Physical coordinates: (2.0 cm, 50.0 cm)
+Grid coordinates: (26, 1)
+Boundary probability sum: 1.000000
+ Charge case: zero_charge
+  Case: all_plus_100
+  phi_total    = 100.000000 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.000000 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -93.647000 V
+  phi_boundary = -93.647000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.078430 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.078430 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 192.934000 V
+  phi_boundary = 192.934000 V
+  phi_charge   = -0.000000 V
+  sigma_boundary = 0.121665 V
+  sigma_charge   = 0.000000 V
+  sigma_total    = 0.121665 V
+ Charge case: uniform_10C
+  Case: all_plus_100
+  phi_total    = 99.936411 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.063589 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000036 V
+  sigma_total    = 0.000036 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -93.710589 V
+  phi_boundary = -93.647000 V
+  phi_charge   = -0.063589 V
+  sigma_boundary = 0.078430 V
+  sigma_charge   = 0.000036 V
+  sigma_total    = 0.078430 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 192.870411 V
+  phi_boundary = 192.934000 V
+  phi_charge   = -0.063589 V
+  sigma_boundary = 0.121665 V
+  sigma_charge   = 0.000036 V
+  sigma_total    = 0.121665 V
+ Charge case: gradient_top_to_bottom
+  Case: all_plus_100
+  phi_total    = 99.996773 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.003227 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000002 V
+  sigma_total    = 0.000002 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -93.650227 V
+  phi_boundary = -93.647000 V
+  phi_charge   = -0.003227 V
+  sigma_boundary = 0.078430 V
+  sigma_charge   = 0.000002 V
+  sigma_total    = 0.078430 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 192.930773 V
+  phi_boundary = 192.934000 V
+  phi_charge   = -0.003227 V
+  sigma_boundary = 0.121665 V
+  sigma_charge   = 0.000002 V
+  sigma_total    = 0.121665 V
+ Charge case: exponential_centre
+  Case: all_plus_100
+  phi_total    = 99.999511 V
+  phi_boundary = 100.000000 V
+  phi_charge   = -0.000489 V
+  sigma_boundary = 0.000000 V
+  sigma_charge   = 0.000001 V
+  sigma_total    = 0.000001 V
+  Case: tb_plus100_lr_minus100
+  phi_total    = -93.647489 V
+  phi_boundary = -93.647000 V
+  phi_charge   = -0.000489 V
+  sigma_boundary = 0.078430 V
+  sigma_charge   = 0.000001 V
+  sigma_total    = 0.078430 V
+  Case: top_left_200_bottom_0_right_minus400
+  phi_total    = 192.933511 V
+  phi_boundary = 192.934000 V
+  phi_charge   = -0.000489 V
+  sigma_boundary = 0.121665 V
+  sigma_charge   = 0.000001 V
+  sigma_total    = 0.121665 V
+
+ Performance counter stats for 'mpirun -np 16 ./Task4.py':
+
+     2340429596956      cycles:u                                                              
+     5569185010615      instructions:u                   #    2.38  insn per cycle            
+          28583828      cache-misses:u                                                        
+
+      58.800847089 seconds time elapsed
+
+     912.920657000 seconds user
+      22.231039000 seconds sys
+
+

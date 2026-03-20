@@ -1,0 +1,196 @@
+Loading mpi version 2021.6.0
+===== Running with 1 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012097962322183775
+Standard deviation: 0.0010006743903407348
+Standard error: 2.237575960145042e-06
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.00046509227220299887
+Standard deviation: 0.00019345252971416635
+Standard error: 4.32573006860174e-07
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 50 cm)
+Grid index: (26, 1)
+Green's function: 0.0005598116109188773
+Standard deviation: 0.0003126109719694314
+Standard error: 6.990193838359299e-07
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 1 ./Task3.py':
+
+     1537355864688      cycles:u                                                              
+     3511351454851      instructions:u                   #    2.28  insn per cycle            
+          21220967      cache-misses:u                                                        
+
+     431.550431060 seconds time elapsed
+
+     429.973952000 seconds user
+       0.345200000 seconds sys
+
+
+
+===== Running with 2 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012084717416378315
+Standard deviation: 0.0010028953348542714
+Standard error: 2.242542143051565e-06
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.0004640080738177624
+Standard deviation: 0.00019153461394433253
+Standard error: 4.282844168237067e-07
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 50 cm)
+Grid index: (26, 1)
+Green's function: 0.0005583967704728951
+Standard deviation: 0.00031129206175761916
+Standard error: 6.960702109460991e-07
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 2 ./Task3.py':
+
+     1748258175619      cycles:u                                                              
+     4140929770471      instructions:u                   #    2.37  insn per cycle            
+          21268821      cache-misses:u                                                        
+
+     250.921055322 seconds time elapsed
+
+     495.138610000 seconds user
+       5.289671000 seconds sys
+
+
+
+===== Running with 4 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012094252210688198
+Standard deviation: 0.0010045494031459359
+Standard error: 2.246240752191154e-06
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.0004646501345636294
+Standard deviation: 0.0001921187893356388
+Standard error: 4.2959067270945e-07
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 50 cm)
+Grid index: (26, 1)
+Green's function: 0.0005583102652825836
+Standard deviation: 0.00031199606280807025
+Standard error: 6.97644405151139e-07
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 4 ./Task3.py':
+
+     1600834108114      cycles:u                                                              
+     3725345189812      instructions:u                   #    2.33  insn per cycle            
+          31783678      cache-misses:u                                                        
+
+     120.945245225 seconds time elapsed
+
+     479.662907000 seconds user
+       2.463127000 seconds sys
+
+
+
+===== Running with 8 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.001209736639753941
+Standard deviation: 0.0010024476645582939
+Standard error: 2.241541121838252e-06
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.0004646251441753172
+Standard deviation: 0.00019216575845274297
+Standard error: 4.2969569884813806e-07
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 50 cm)
+Grid index: (26, 1)
+Green's function: 0.0005592560553633218
+Standard deviation: 0.0003129420126204452
+Standard error: 6.997596132349126e-07
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 8 ./Task3.py':
+
+     1894573011728      cycles:u                                                              
+     4294904874370      instructions:u                   #    2.27  insn per cycle            
+          59922306      cache-misses:u                                                        
+
+      77.769554348 seconds time elapsed
+
+     611.796010000 seconds user
+       7.714447000 seconds sys
+
+
+
+===== Running with 16 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012079219530949637
+Standard deviation: 0.0009983859633108107
+Standard error: 2.2324588817445835e-06
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 2 cm)
+Grid index: (1, 1)
+Green's function: 0.00046505767012687435
+Standard deviation: 0.00019321847542829807
+Standard error: 4.3204964556654724e-07
+Sum of boundary probabilities: 1.000000
+
+Number of walkers: 200000
+Physical point: (2 cm, 50 cm)
+Grid index: (26, 1)
+Green's function: 0.000558194925028835
+Standard deviation: 0.000311605239855393
+Standard error: 6.967704984617856e-07
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 16 ./Task3.py':
+
+     1940776986686      cycles:u                                                              
+     4424792961326      instructions:u                   #    2.28  insn per cycle            
+         128073825      cache-misses:u                                                        
+
+      49.074767541 seconds time elapsed
+
+     768.254779000 seconds user
+      12.020402000 seconds sys
+
+
+

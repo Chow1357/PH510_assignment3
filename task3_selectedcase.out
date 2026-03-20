@@ -1,0 +1,116 @@
+Loading mpi version 2021.6.0
+===== Running with 1 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012097962322183775
+Standard deviation: 0.0010006743903407348
+Standard error: 2.237575960145042e-06
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 1 ./Task3_selectedcase.py':
+
+     1398282573898      cycles:u                                                              
+     3133632428691      instructions:u                   #    2.24  insn per cycle            
+           4513637      cache-misses:u                                                        
+
+     393.739143631 seconds time elapsed
+
+     392.692872000 seconds user
+       0.228788000 seconds sys
+
+
+
+===== Running with 2 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012086658977316419
+Standard deviation: 0.001003181971735367
+Standard error: 2.243183082602553e-06
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 2 ./Task3_selectedcase.py':
+
+     1397533774920      cycles:u                                                              
+     3335005947389      instructions:u                   #    2.39  insn per cycle            
+           8365476      cache-misses:u                                                        
+
+     208.307575044 seconds time elapsed
+
+     413.737608000 seconds user
+       1.764082000 seconds sys
+
+
+
+===== Running with 4 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012101557093425607
+Standard deviation: 0.0010048357590876351
+Standard error: 2.246881063542554e-06
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 4 ./Task3_selectedcase.py':
+
+     1932050592685      cycles:u                                                              
+     4669337189406      instructions:u                   #    2.42  insn per cycle            
+          19714933      cache-misses:u                                                        
+
+     154.224512208 seconds time elapsed
+
+     603.092738000 seconds user
+      12.047036000 seconds sys
+
+
+
+===== Running with 8 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.0012090599769319494
+Standard deviation: 0.001002576139133008
+Standard error: 2.241828399720693e-06
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 8 ./Task3_selectedcase.py':
+
+     2082193092097      cycles:u                                                              
+     4875897303410      instructions:u                   #    2.34  insn per cycle            
+          48738287      cache-misses:u                                                        
+
+      91.914699438 seconds time elapsed
+
+     716.261404000 seconds user
+      16.357426000 seconds sys
+
+
+
+===== Running with 16 MPI ranks =====
+
+Number of walkers: 200000
+Physical point: (50 cm, 50 cm)
+Grid index: (26, 26)
+Green's function: 0.001208514033064206
+Standard deviation: 0.000999960830724082
+Standard error: 2.2359803923362076e-06
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 16 ./Task3_selectedcase.py':
+
+     1712452416910      cycles:u                                                              
+     4000924723761      instructions:u                   #    2.34  insn per cycle            
+         115938512      cache-misses:u                                                        
+
+      42.815306459 seconds time elapsed
+
+     669.367470000 seconds user
+      10.960305000 seconds sys
+
+
+

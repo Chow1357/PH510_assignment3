@@ -1,0 +1,111 @@
+Loading mpi version 2021.6.0
+===== Running with 1 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 200000
+Estimated Greens's function at the start point: 0.0012072241445597847
+standard deviation at the start point: 0.000996
+Standard error at start point: 0.000002
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 1 ./Task2_optimised.py':
+
+     1405601020205      cycles:u                                                              
+     3120690502290      instructions:u                   #    2.22  insn per cycle            
+           4382339      cache-misses:u                                                        
+
+     398.866845582 seconds time elapsed
+
+     394.610290000 seconds user
+       0.385398000 seconds sys
+
+
+
+===== Running with 2 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 200000
+Estimated Greens's function at the start point: 0.0012068589004229143
+standard deviation at the start point: 0.000998
+Standard error at start point: 0.000002
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 2 ./Task2_optimised.py':
+
+     1429146653382      cycles:u                                                              
+     3286255248312      instructions:u                   #    2.30  insn per cycle            
+           8551007      cache-misses:u                                                        
+
+     211.043407389 seconds time elapsed
+
+     419.390231000 seconds user
+       1.547419000 seconds sys
+
+
+
+===== Running with 4 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 200000
+Estimated Greens's function at the start point: 0.0012073125720876586
+standard deviation at the start point: 0.000997
+Standard error at start point: 0.000002
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 4 ./Task2_optimised.py':
+
+     1904326605390      cycles:u                                                              
+     4536074758147      instructions:u                   #    2.38  insn per cycle            
+          19884506      cache-misses:u                                                        
+
+     151.227252043 seconds time elapsed
+
+     591.622264000 seconds user
+      11.357380000 seconds sys
+
+
+
+===== Running with 8 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 200000
+Estimated Greens's function at the start point: 0.001206559015763168
+standard deviation at the start point: 0.000994
+Standard error at start point: 0.000002
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 8 ./Task2_optimised.py':
+
+     1664699268203      cycles:u                                                              
+     3844563519159      instructions:u                   #    2.31  insn per cycle            
+          50981563      cache-misses:u                                                        
+
+      73.378701274 seconds time elapsed
+
+     577.467436000 seconds user
+       7.046603000 seconds sys
+
+
+
+===== Running with 16 MPI ranks =====
+Grid size (interior): 50 x 50
+starting point: (25, 25)
+Number of walkers: 200000
+Estimated Greens's function at the start point: 0.0012062629757785468
+standard deviation at the start point: 0.000995
+Standard error at start point: 0.000002
+Sum of boundary probabilities: 1.000000
+
+ Performance counter stats for 'mpirun -np 16 ./Task2_optimised.py':
+
+     2171945209881      cycles:u                                                              
+     5125561312563      instructions:u                   #    2.36  insn per cycle            
+         120934054      cache-misses:u                                                        
+
+      54.382034520 seconds time elapsed
+
+     842.584943000 seconds user
+      21.734318000 seconds sys
+
+
+
