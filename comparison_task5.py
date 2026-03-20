@@ -1,6 +1,6 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
-import numpy as np 
-from mpi4py import MPI 
+import numpy as np
+from mpi4py import MPI
 
 #importing functiosn from other scripts to save rewriting
 from Task2_optimised import estimate_greens_function
@@ -19,22 +19,22 @@ comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
 if __name__ == "__main__":
-    # defining the main parameters 
+    # defining the main parameters
     N = 50
-    # target 
+    # target
     target = 1e-8
     L = 100.0 # cm
     nwalkers = 200000
     seed = 1234
 
-    # three points asked to test first (from task 3) 
+    # three points asked to test first (from task 3)
     points = {
         "centre": (50.0, 50.0),
         "corner": (2.0, 2.0),
         "face": (2.0, 50.0),
     }
 
-    #The three boundary condition cases stated in the first part of task 4 
+    #The three boundary condition cases stated in the first part of task 4
     boundary_cases = {
         "all_plus_100": (100.0, 100.0, 100.0, 100.0),
         "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     }
     # storage for output rows
     rows = []
-    
+
     # loop over the points
     for point_name, (x_cm, y_cm) in points.items():
         start_i, start_j = physical_to_grid(x_cm, y_cm, L, N)
@@ -59,19 +59,19 @@ if __name__ == "__main__":
             start_i, start_j, N, nwalkers,
             seed=seed, chunk_size=2500
         )
-    
+
         if rank == 0:
             for charge_name, f in charge_cases.items():
                 for boundary_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
                     boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
-                    # reconstruct the stochastic potential from the Green's function 
+                    # reconstruct the stochastic potential from the Green's function
                     phi_green, phi_boundary, phi_charge, sigma_boundary, sigma_charge, sigma_total = potential_from_greens(
                         g_charge, g_charge_stderr, boundary_prob, boundary_values, f, nwalkers)
 
                     boundaries = (V_top, V_bottom, V_left, V_right)
                     phi_det_grid, iterations, omega, delta = solve_poisson_sor(N, f, boundaries, target=target)
 
-                    # compute deterministic potential 
+                    # compute deterministic potential
                     phi_det = phi_det_grid[start_i, start_j]
                     # compute absolute difference between stochastic and deterministic potentials
                     difference = abs(phi_green - phi_det)
@@ -85,7 +85,7 @@ if __name__ == "__main__":
                         phi_det,
                         difference,
                     ])
-    
+
     if rank == 0:
         print("point, boundary_case, charge_case, phi_green_V,sigma_total_V,phi_sor_V,abs_difference_V")
         for row in rows:
