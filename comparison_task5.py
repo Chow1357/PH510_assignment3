@@ -65,7 +65,7 @@ if __name__ == "__main__":
                 for boundary_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
                     boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
                     # reconstruct the stochastic potential from the Green's function 
-                    phi_green, phi_boundary, phi_charge, sigma_green = potential_from_greens(
+                    phi_green, phi_boundary, phi_charge, sigma_boundary, sigma_charge, sigma_total = potential_from_greens(
                         g_charge, g_charge_stderr, boundary_prob, boundary_values, f)
 
                     boundaries = (V_top, V_bottom, V_left, V_right)
@@ -81,13 +81,13 @@ if __name__ == "__main__":
                         boundary_name,
                         charge_name,
                         phi_green,
-                        sigma_green,
+                        sigma_total,
                         phi_det,
                         difference,
                     ])
     
     if rank == 0:
-        print("point, boundary_case, charge_case, phi_green_V,sigma_green_V,phi_sor_V,abs_difference_V")
+        print("point, boundary_case, charge_case, phi_green_V,sigma_total_V,phi_sor_V,abs_difference_V")
         for row in rows:
             print(
                 f"{row[0]},"
