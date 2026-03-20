@@ -18,3 +18,32 @@ from part1 import solve_poisson_sor   # change filename if needed
 comm = MPI.COMM_WORLD
 rank = comm.Get_rank()
 
+if __name__ == "__main__":
+    # defining the main parameters 
+    N = 50
+    L = 100.0 # cm
+    nwalkers = 200000
+    seed = 1234
+
+    # three points asked to test first (from task 3) 
+    points = {
+        "centre": (50.0, 50.0),
+        "corner": (2.0, 2.0),
+        "face": (2.0, 50.0),
+    }
+
+    #The three boundary condition cases stated in the first part of task 4 
+    boundary_cases = {
+        "all_plus_100": (100.0, 100.0, 100.0, 100.0),
+        "tb_plus100_lr_minus100": (100.0, 100.0, -100.0, -100.0),
+        "top_left_200_bottom_0_right_minus400": (200.0, 0.0, 200.0, -400.0),
+    }
+
+    # charge cases required
+    charge_cases = {
+        "zero_charge": make_zero_charge(N),
+        "uniform_10C": make_uniform_charge(N, rho=10.0),
+        "gradient_top_to_bottom":make_gradient_charge(N),
+        "exponential_centre": make_exponential_charge(N, L_m=1.0),
+    }
+
