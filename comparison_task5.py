@@ -68,6 +68,20 @@ if __name__ == "__main__":
 
                 # compute deterministic potential 
                 phi_det = phi_det_grid[start_i, start_j]
+                # compute absolute difference between stochastic and deterministic potentials
+                difference = abs(phi_green - phi_det)
+                # this become row of the output table
+                rows.append([
+                    point_name,
+                    boundary_name,
+                    charge_name,
+                    phi_green,
+                    sigma_green,
+                    phi_det,
+                    difference,
+                ])
+                
+                
 
 
         
