@@ -55,4 +55,11 @@ if __name__ == "__main__":
 
         g_charge, g_charge_std, g_charge_stderr, mean_visits, std_visits, boundary_prob = estimate_greens_function(start_i, start_j, N, nwalkers, seed=seed, chunk_size=2500
         )
+    
+        if rank == 0:
+            for charge_name, f in charge_cases.items():
+                for boundary_name, (V_top, V_bottom, V_left, V_right) in boundary_cases.items():
+                boundary_values = make_boundary_array(N, V_top, V_bottom, V_left, V_right)
+
+                
         
