@@ -80,6 +80,19 @@ if __name__ == "__main__":
                     phi_det,
                     difference,
                 ])
+    
+    if rank == 0:
+        print("point, boundary_case, charge_case, phi_green_V,sigma_green_V,phi_sor_V,abs_difference_V")
+        for row in rows:
+            print(
+                f"{row[0]},"
+                f"{row[1]},"
+                f"{row[2]},"
+                f"{row[3]:.6f},"
+                f"{row[4]:.6e},"
+                f"{row[5]:.6f},"
+                f"{row[6]:.6e}"
+            )
                 
                 
 
