@@ -25,6 +25,6 @@
 module load mpi
 
 # Modify the line below to run your program  python3 Task1-code.py
-mpirun -np 16 python3 Task5_comparison.py > results.csv
+mpirun -np 16 python3 comparison_task5.py > results.csv
 
    

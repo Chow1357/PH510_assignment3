@@ -21,7 +21,7 @@
 # Output file
 #SBATCH --output=slurm-%j.out
 
-# choose which version to load 
+# choose which version to load
 
 # Modify the line below to run your program  python3 Task1-code.py
 
