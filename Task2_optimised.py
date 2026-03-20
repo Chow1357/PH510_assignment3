@@ -1,4 +1,10 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
+"""
+Monte carlo estimation of the descrete Green's function for the 2D poisson equation
+
+This code implements random walks with absorbing boundaries and uses MPI with dynamic
+load balancing to distribute walkers across processes
+"""
 import numpy as np
 from mpi4py import MPI
 
@@ -42,7 +48,13 @@ def single_walk(start_i, start_j, N, rng):
 # monte carlo Greens's function with dynamic load balancing 
 def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_size=2500):
     """
-    Estimate the Green's function using MPI with dynamic chunk scheduling
+    Estimate the discrete charge-related Green's function using Monte carlo random walks.
+    
+    Each walker starts at (start_i, start_j), performs an unbiased random walk,
+    and terminates upon reaching the boundary. The Green's function is estimated as:
+        G = h^2 * <number of visits>
+    Boundary-hit probabilities are also accumulated to represent the 
+    edge-potential (laplace) contributio
     """
     
     # random number generator, giving a different stream per rank
@@ -161,9 +173,9 @@ def estimate_greens_function(start_i, start_j, N, nwalkers, seed=None, chunk_siz
         std_visits = np.sqrt(var_visits)
         stderr_visits = std_visits / np.sqrt(nwalkers)
 
-        # conversion of visits to Green's function with 0.25 factor
+        # conversion of visits to Green's function with h^2 factor
         h = 1.0 / (N+1)
-
+        # convert expected visit counts into the discrete green's function 
         G = h*h * mean_visits
         G_std = h*h * std_visits
         G_stderr = h*h * stderr_visits 

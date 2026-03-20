@@ -1,11 +1,9 @@
 #!/opt/software/anaconda/python-3.10.9/bin/python
 """Solve the 2D Poisson equation on a square grid using SOR """
 import matplotlib
-import numpy as np
-import matplotlib.pyplot as plt
-
 matplotlib.use("Agg")
-
+import matplotlib.pyplot as plt
+import numpy as np
 def make_boundary_array(n, top_bc, bottom_bc, left_bc, right_bc):
     """
     create boundary values on a halo grid.
