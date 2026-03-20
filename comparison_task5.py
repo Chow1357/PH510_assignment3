@@ -46,4 +46,10 @@ if __name__ == "__main__":
         "gradient_top_to_bottom":make_gradient_charge(N),
         "exponential_centre": make_exponential_charge(N, L_m=1.0),
     }
-
+    # storage for output rows
+    rows = []
+    
+    # loop over the points
+    for point_name, (x_cm, y_cm) in points.items():
+        start_i, start_j = physical_to_grid(x_cm, y_cm, L_cm, N)
+        
