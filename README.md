@@ -26,6 +26,7 @@ Task 1 files:
 program - part1.py 
 output - part1_main.out 
 job script - part1_run.sh 
+plot - phi.png 
 
 Task 2 files: 
 program - Task2_optimised.py 
